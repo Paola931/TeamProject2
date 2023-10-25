@@ -42,7 +42,7 @@ public class Prodotto {
     }
 
     public String getDescription() {
-        if (!description.isEmpty()) {
+        if (description == " ") {
             return description;
         }
         return "No description";
