@@ -9,12 +9,14 @@ public class Main {
 
 
     public static void main(String[]args){
+        Scanner in = new Scanner(System.in); // inizializzo Scanner
+        ArrayList<Prodotto> listaMagazzino = new ArrayList<>(); // creo un arraylist di prodotto
 
-        System.out.println("Seleziona un numero: ");
-        Scanner scan = new Scanner(System.in); // Aggiunto costruttore scanner, aggiunto in automatico "Import java.util.scanner"
-
+        // crea un prodotto e aggiungilo all'arraylist e poi al magazzino
         Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128,499, 599, 1);
-        System.out.println(sample1);
+        listaMagazzino.add(sample1);
+        Magazzino magazzino = new Magazzino(listaMagazzino);
+        magazzino.printMagazzino(listaMagazzino);
     }
     private static void calcoloCostoMedio(ArrayList<Prodotto> listaCarrello) {
         double costoTotale = 0;
