@@ -15,11 +15,14 @@ public class Main {
         ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
         ArrayList<ArrayList<Prodotto>> listaTotale = new ArrayList<>(); // creo un arraylist di prodotto che contieni sia il magazzino che il carrello
 
-        // crea un prodotto e aggiungilo all'arraylist e poi al magazzino
+        // crea un prodotto e aggiungilo all'arraylist del magazzino e poi al magazzino stesso
         Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128,499, 599, 1);
-        listaCarrello.add(sample1);
+        listaMagazzino.add(sample1);
         Magazzino magazzino = new Magazzino(listaMagazzino);
         magazzino.printMagazzino(listaMagazzino);
+
+        // inizializzo ricerca dispositivo
+        // ricercaDispositivo(in, listaMagazzino);
     }
     private static void calcoloCostoMedio(ArrayList<Prodotto> listaCarrello) {
         double costoTotale = 0;
@@ -93,7 +96,7 @@ public class Main {
 //                ricercaModello(in, listaMagazzino);
                 break;
             case "4" :
-//                ricercaPrezzoVendita(in, listaMagazzino);
+                ricercaPrezzoVendita(in, listaMagazzino);
                 break;
             case "5" :
 //                ricercaPrezzoAcquisto(in, listaMagazzino);
@@ -105,6 +108,38 @@ public class Main {
                 System.out.println("Valore non supportato: " + input);
                 System.out.println();
         }
+    }
+    public static void ricercaPrezzoVendita(Scanner in, ArrayList<Prodotto> listaMagazzino) {
+        boolean bool = true;
+        System.out.println("Scrivi il prezzo di vendita che vuoi ricercare:");
+        System.out.println();
+        String input = in.nextLine();
+        while(true) {
+            try {
+                Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.println();
+                System.out.println("Valore non supportato: " + input);
+                System.out.println();
+                System.out.println("Scrivi il prezzo di vendita che vuoi ricercare:");
+                System.out.println();
+                input = in.nextLine();
+            }
+        }
+        System.out.println();
+        System.out.println("Ecco gli elementi trovati nel magazzino corrispondenti ai tuoi parametri di ricerca:");
+        System.out.println();
+        for (Prodotto prodotto : listaMagazzino) {
+            if (prodotto.getPriceSell() == Integer.parseInt(input)) {
+                bool = false;
+                System.out.println(prodotto);
+            }
+        }
+        if(bool) {
+            System.out.println("Non sono stati trovati risultati.");
+        }
+        System.out.println();
     }
     private static void rimuoviCarrello(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello, ArrayList<ArrayList<Prodotto>> listaCompleta) {
         boolean bool = true;
