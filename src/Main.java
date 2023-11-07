@@ -2,6 +2,7 @@ package src;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -10,11 +11,13 @@ public class Main {
 
     public static void main(String[]args){
         Scanner in = new Scanner(System.in); // inizializzo Scanner
-        ArrayList<Prodotto> listaMagazzino = new ArrayList<>(); // creo un arraylist di prodotto
+        ArrayList<Prodotto> listaMagazzino = new ArrayList<>(); // creo un arraylist di prodotto per il magazzino
+        ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
+        ArrayList<ArrayList<Prodotto>> listaTotale = new ArrayList<>(); // creo un arraylist di prodotto che contieni sia il magazzino che il carrello
 
         // crea un prodotto e aggiungilo all'arraylist e poi al magazzino
         Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128,499, 599, 1);
-        listaMagazzino.add(sample1);
+        listaCarrello.add(sample1);
         Magazzino magazzino = new Magazzino(listaMagazzino);
         magazzino.printMagazzino(listaMagazzino);
     }
@@ -101,6 +104,27 @@ public class Main {
             default:
                 System.out.println("Valore non supportato: " + input);
                 System.out.println();
+        }
+    }
+    private static void rimuoviCarrello(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello, ArrayList<ArrayList<Prodotto>> listaCompleta) {
+        boolean bool = true;
+        System.out.println("Scrivi l'ID del prodotto che vuoi rimuovere dal carrello:");
+        System.out.println();
+        String input = in.nextLine();
+        System.out.println();
+        for (Prodotto prodotto : listaCarrello) {
+            if(Objects.equals(String.valueOf(prodotto.getId()), input)) {
+                listaCarrello.remove(prodotto);
+                listaMagazzino.add(prodotto);
+                bool = false;
+                break;
+            }
+        }
+        listaCompleta.add(listaCarrello);
+        listaCompleta.add(listaMagazzino);
+        if(bool) {
+            System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
+            System.out.println();
         }
     }
 }
