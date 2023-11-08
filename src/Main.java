@@ -103,6 +103,8 @@ public class Main {
                 break;
             case "6" :
 //                ricercaRangePrezzo(in, listaMagazzino);
+            case "7" :
+//                visualizzaMagazzino(in, listaMagazzino);
                 break;
             default:
                 System.out.println("Valore non supportato: " + input);
@@ -161,5 +163,44 @@ public class Main {
             System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
             System.out.println();
         }
+
+    }
+    private static void visualizzaMagazzino(ArrayList<Prodotto> listaMagazzino){
+        for(Prodotto prodotto : listaMagazzino){
+            System.out.println("Elenco magazzino: ");
+            System.out.println(prodotto + " ");
+        }
+    }
+
+    public static void ricercaPrezzoAcquisto(Scanner in, ArrayList<Prodotto> listaMagazzino) {
+        boolean bool = true;
+        System.out.println("Scrivi il prezzo di acquisto che vuoi ricercare:");
+        System.out.println();
+        String input = in.nextLine();
+
+        for(Prodotto prodotto : listaMagazzino){
+            if (prodotto.getPriceBuy() == Integer.parseInt(input)) {
+                System.out.println(prodotto);
+            } else {
+                System.out.println("Non sono stati trovati risultati");
+            }
+        }
+//        System.out.println();
+//        System.out.println("Ecco gli elementi trovati nel magazzino corrispondenti ai tuoi parametri di ricerca:");
+//        System.out.println();
+//        for (Prodotto prodotto : listaMagazzino) {
+//            if (prodotto.getPriceSell() == Integer.parseInt(input)) {
+//                bool = false;
+//                System.out.println(prodotto);
+//            }
+//        }
+//        if(bool) {
+//            System.out.println("Non sono stati trovati risultati.");
+//        }
+//        System.out.println();
+    }
+
+    public static void ricercaDispositivoMagazzino(ArrayList<Magazzino> listaMagazzino){
+
     }
 }
