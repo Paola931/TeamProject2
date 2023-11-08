@@ -1,7 +1,8 @@
 package src;
 
 public class Prodotto {
-    enum tipo {TABLET, SMARTPHONE, NOTEBOOK}
+    enum Tipo {TABLET, SMARTPHONE, NOTEBOOK}
+    enum Produttore {SAMSUNG,APPLE}
 
 
     private String productor;
@@ -12,9 +13,11 @@ public class Prodotto {
     private int priceBuy;
     private int priceSell;
     private int id;
+    private Tipo tipo;
+    private Produttore produttore;
 
 
-    public Prodotto(String productor, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id) {
+    public Prodotto(String productor, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, Tipo tipo,Produttore produttore) {
         this.productor = productor;
         this.model = model;
         this.description = description;
@@ -23,6 +26,8 @@ public class Prodotto {
         this.priceBuy = priceBuy;
         this.priceSell = priceSell;
         this.id = id;
+        this.tipo = tipo;
+        this.produttore = produttore;
     }
 
     public String getProductor() {
@@ -92,6 +97,25 @@ public class Prodotto {
         this.id = id;
     }
 
+    public void setDisplayInch(double displayInch) {
+        this.displayInch = displayInch;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public Produttore getProduttore() {
+        return produttore;
+    }
+
+    public void setProduttore(Produttore produttore) {
+        this.produttore = produttore;
+    }
 
     @Override
     public String toString() {
