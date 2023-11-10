@@ -26,58 +26,58 @@ public class Main {
         // inizializzo ricerca dispositivo
 
 
-    // ricercaDispositivo(in, listaMagazzino);
+        // ricercaDispositivo(in, listaMagazzino);
 
-    //MENU PRINCIPALE
-    String input = Integer.toString(1);
+        //MENU PRINCIPALE
+        String input = Integer.toString(1);
         System.out.println("Inserisci un numero per iniziare un operazione:");
-        while(!input.equals("0")){
-        System.out.println("0 = Esci dal programma");
-        System.out.println("1 = Aggiungi  un articolo al magazzino");
-        System.out.println("2 = Ricarca un dispositivo nel magazzino");
-        System.out.println("3 = Aggiungi elemento al carrello tramite ID");
-        System.out.println("4 = Rimuovi elemento dal carrello tramite ID");
-        System.out.println("5 = Visualizza i dispositivi presenti nel magazzino");
-        System.out.println("6 = Visualizza il carrello");
-        System.out.println("7 = Visualizza il prezzo totale degli articoli presenti nel carrello");
-        System.out.println("8 = Visualizza il prezzo medio degli articoli presenti nel carrello");
-        System.out.println("9 = Completa il tuo acquisto");
-        input = in.nextLine();
+        while (!input.equals("0")) {
+            System.out.println("0 = Esci dal programma");
+            System.out.println("1 = Aggiungi  un articolo al magazzino");
+            System.out.println("2 = Ricarca un dispositivo nel magazzino");
+            System.out.println("3 = Aggiungi elemento al carrello tramite ID");
+            System.out.println("4 = Rimuovi elemento dal carrello tramite ID");
+            System.out.println("5 = Visualizza i dispositivi presenti nel magazzino");
+            System.out.println("6 = Visualizza il carrello");
+            System.out.println("7 = Visualizza il prezzo totale degli articoli presenti nel carrello");
+            System.out.println("8 = Visualizza il prezzo medio degli articoli presenti nel carrello");
+            System.out.println("9 = Completa il tuo acquisto");
+            input = in.nextLine();
 
-        switch (input) {
-            case "0": //Esci dal programma
-                System.out.println("Arrivederci e grazie per averci scelto!");
-                break;
-            case "1": //Aggiungi  un articolo al magazzino
-                break;
-            case "2": //Ricarca un dispositivo nel magazzino
-                ricercaDispositivo(in, listaMagazzino);
-                break;
-            case "3": // Aggiungi elemento al carrello tramite ID
-                aggiungiCarrelloID(in, listaMagazzino, listaCarrello);
-                break;
-            case "4": // Rimuovi elemento dal carrello tramite ID
-                rimuoviCarrello(in, listaMagazzino, listaCarrello, listaTotale);
-                break;
-            case "5": // Visualizza i dispositivi presenti nel magazzino
-                break;
-            case "6": // Visualizza il carrello
-                break;
-            case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
-                calcoloCostoTotale(listaCarrello);
-                break;
-            case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
-                calcoloCostoMedio(listaCarrello);
-                break;
-            case "9": //  Completa il tuo acquisto
-                break;
-            default:
-                System.out.println("Valore non supportato: " + input);
-                System.out.println();
+            switch (input) {
+                case "0": //Esci dal programma
+                    System.out.println("Arrivederci e grazie per averci scelto!");
+                    break;
+                case "1": //Aggiungi  un articolo al magazzino
+                    break;
+                case "2": //Ricarca un dispositivo nel magazzino
+                    ricercaDispositivo(in, listaMagazzino);
+                    break;
+                case "3": // Aggiungi elemento al carrello tramite ID
+                    aggiungiCarrelloID(in, listaMagazzino, listaCarrello);
+                    break;
+                case "4": // Rimuovi elemento dal carrello tramite ID
+                    rimuoviCarrello(in, listaMagazzino, listaCarrello, listaTotale);
+                    break;
+                case "5": // Visualizza i dispositivi presenti nel magazzino
+                    break;
+                case "6": // Visualizza il carrello
+                    break;
+                case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
+                    calcoloCostoTotale(listaCarrello);
+                    break;
+                case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
+                    calcoloCostoMedio(listaCarrello);
+                    break;
+                case "9": //  Completa il tuo acquisto
+                    break;
+                default:
+                    System.out.println("Valore non supportato: " + input);
+                    System.out.println();
+            }
         }
-    }
 
-}
+    }
 
 
     private static void calcoloCostoMedio(ArrayList<Prodotto> listaCarrello) {
@@ -325,6 +325,7 @@ public class Main {
             System.out.println("0 = Esci dal programma");
             System.out.println("1 = Samsung");
             System.out.println("2 = Apple");
+            input = in.nextLine();
 
             switch (input) {
                 case "0":
