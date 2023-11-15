@@ -1,6 +1,5 @@
 package src;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -11,12 +10,12 @@ public class Main {
         ArrayList<Prodotto> listaMagazzino = new ArrayList<>(); // creo un arraylist di prodotto per il magazzino
         ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
         ArrayList<ArrayList<Prodotto>> listaTotale = new ArrayList<>(); // creo un arraylist di prodotto che contieni sia il magazzino che il carrello
-
+        Carrello carrello = new Carrello(listaCarrello, in);
+        Magazzino magazzino = new Magazzino(listaMagazzino, in);
         // crea un prodotto e aggiungilo all'arraylist del magazzino e poi al magazzino stesso
         Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 599, 1, Prodotto.Tipo.SMARTPHONE, Prodotto.Produttore.SAMSUNG);
-        listaMagazzino.add(sample1);
-        Magazzino magazzino = new Magazzino(listaMagazzino);
-        magazzino.printMagazzino(listaMagazzino);
+        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 599, 2, Prodotto.Tipo.SMARTPHONE, Prodotto.Produttore.SAMSUNG);
+        listaCarrello.add(sample1);
 
         // inizializzo ricerca dispositivo
         // ricercaDispositivo(in, listaMagazzino);
@@ -27,7 +26,7 @@ public class Main {
         while (!input.equals("0")) {
             System.out.println("0 = Esci dal programma");
             System.out.println("1 = Aggiungi  un articolo al magazzino");
-            System.out.println("2 = Ricarca un dispositivo nel magazzino");
+            System.out.println("2 = Ricerca un dispositivo nel magazzino");
             System.out.println("3 = Aggiungi elemento al carrello tramite ID");
             System.out.println("4 = Rimuovi elemento dal carrello tramite ID");
             System.out.println("5 = Visualizza i dispositivi presenti nel magazzino");
@@ -35,6 +34,8 @@ public class Main {
             System.out.println("7 = Visualizza il prezzo totale degli articoli presenti nel carrello");
             System.out.println("8 = Visualizza il prezzo medio degli articoli presenti nel carrello");
             System.out.println("9 = Completa il tuo acquisto");
+            System.out.println();
+            input = in.nextLine();
 
             switch (input) {
                 case "0": //Esci dal programma
@@ -43,13 +44,19 @@ public class Main {
                 case "1": //Aggiungi  un articolo al magazzino
                     break;
                 case "2": //Ricarca un dispositivo nel magazzino
-                    ricercaDispositivo(in,listaMagazzino);
+//                    magazzino.ricercaDispositivo();
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-                    aggiungiCarrelloID(in, listaMagazzino,listaCarrello);
+                    aggiungiCarrelloId(in, listaMagazzino,listaCarrello);
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
-                    rimuoviCarrello(in,listaMagazzino,listaCarrello,listaTotale);
+                    try {
+                        Prodotto prodotto = carrello.getProdotto();
+                        carrello.rimuoviDalCarrello(prodotto);
+                        magazzino.aggiungiAMagazzino(prodotto);
+                    } catch(NullPointerException npe) {
+                        System.out.println(npe);
+                    }
                     break;
                 case "5": // Visualizza i dispositivi presenti nel magazzino
                     break;
@@ -59,7 +66,7 @@ public class Main {
                     calcoloCostoTotale(listaCarrello);
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
-                    calcoloCostoMedio(listaCarrello);
+                    System.out.println(carrello.calcoloCostoMedio());
                     break;
                 case "9": //  Completa il tuo acquisto
                     break;
@@ -67,94 +74,6 @@ public class Main {
                     System.out.println("Valore non supportato: " + input);
                     System.out.println();
             }
-        }
-    }
-
-
-    private static void calcoloCostoMedio(ArrayList<Prodotto> listaCarrello) {
-        double costoTotale = 0;
-        if (!listaCarrello.isEmpty()) {
-            for (Prodotto prodotto : listaCarrello) {
-                costoTotale += prodotto.getPriceSell();
-            }
-            System.out.println(costoTotale / listaCarrello.size());
-        } else {
-            System.out.println("Il tuo carrello è vuoto");
-        }
-        System.out.println();
-    }
-
-    public static void ricercaDispositivo(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        System.out.println("Seleziona in che modo vuoi ricercare:");
-        System.out.println("0 = esci dalla funzione di ricerca");
-        System.out.println("1 = per tipo");
-        System.out.println("2 = per produttore");
-        System.out.println("3 = per modello");
-        System.out.println("4 = per prezzo di vendita");
-        System.out.println("5 = per prezzo di acquisto");
-        System.out.println("6 = ricerca specifica per range di prezzo");
-        System.out.println();
-        String input = in.nextLine();
-        while (true) {
-            try {
-                int inputInt = Integer.parseInt(input);
-                if (inputInt >= 0 && inputInt <= 6) {
-                    break;
-                }
-                System.out.println();
-                System.out.println("Valore non supportato: " + input);
-                System.out.println();
-                System.out.println("Seleziona in che modo vuoi ricercare:");
-                System.out.println("0 = esci dalla funzione di ricerca");
-                System.out.println("1 = per tipo");
-                System.out.println("2 = per produttore");
-                System.out.println("3 = per modello");
-                System.out.println("4 = per prezzo di vendita");
-                System.out.println("5 = per prezzo di acquisto");
-                System.out.println("6 = ricerca specifica per range di prezzo");
-                System.out.println();
-                input = in.nextLine();
-            } catch (NumberFormatException nfe) {
-                System.out.println();
-                System.out.println("Valore non supportato: " + input);
-                System.out.println();
-                System.out.println("Seleziona in che modo vuoi ricercare:");
-                System.out.println("0 = esci dalla funzione di ricerca");
-                System.out.println("1 = per tipo");
-                System.out.println("2 = per produttore");
-                System.out.println("3 = per modello");
-                System.out.println("4 = per prezzo di vendita");
-                System.out.println("5 = per prezzo di acquisto");
-                System.out.println("6 = ricerca specifica per range di prezzo");
-                System.out.println();
-                input = in.nextLine();
-            }
-        }
-        System.out.println();
-        switch (input) {
-            case "0":
-                break;
-            case "1":
-                ricercaTipo(in, listaMagazzino);
-                break;
-            case "2":
-               ricercaProduttore(in, listaMagazzino);
-                break;
-            case "3":
-//                ricercaModello(in, listaMagazzino);
-                break;
-            case "4":
-                ricercaPrezzoVendita(in, listaMagazzino);
-                break;
-            case "5":
-//                ricercaPrezzoAcquisto(in, listaMagazzino);
-                break;
-            case "6":
-//                ricercaRangePrezzo(in, listaMagazzino);
-                break;
-            default:
-                System.out.println("Valore non supportato: " + input);
-                System.out.println();
         }
     }
 
@@ -191,29 +110,7 @@ public class Main {
         System.out.println();
     }
 
-    private static void rimuoviCarrello(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello, ArrayList<ArrayList<Prodotto>> listaCompleta) {
-        boolean bool = true;
-        System.out.println("Scrivi l'ID del prodotto che vuoi rimuovere dal carrello:");
-        System.out.println();
-        String input = in.nextLine();
-        System.out.println();
-        for (Prodotto prodotto : listaCarrello) {
-            if (Objects.equals(String.valueOf(prodotto.getId()), input)) {
-                listaCarrello.remove(prodotto);
-                listaMagazzino.add(prodotto);
-                bool = false;
-                break;
-            }
-        }
-        listaCompleta.add(listaCarrello);
-        listaCompleta.add(listaMagazzino);
-        if (bool) {
-            System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
-            System.out.println();
-        }
-    }
-
-    private static void aggiungiCarrelloID(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello) {
+    private static void aggiungiCarrelloId(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello) {
         boolean validoID = true;
         System.out.println("Scrivi l'ID del prodotto che desideri aggiungere al carrello:");
         System.out.println();
