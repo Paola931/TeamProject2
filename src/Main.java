@@ -7,18 +7,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in); // inizializzo Scanner
-        ArrayList<Prodotto> listaMagazzino = new ArrayList<>(); // creo un arraylist di prodotto per il magazzino
-        ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
-        ArrayList<ArrayList<Prodotto>> listaTotale = new ArrayList<>(); // creo un arraylist di prodotto che contieni sia il magazzino che il carrello
-        Carrello carrello = new Carrello(listaCarrello, in);
-        Magazzino magazzino = new Magazzino(listaMagazzino, in);
-        // crea un prodotto e aggiungilo all'arraylist del magazzino e poi al magazzino stesso
-        Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 599, 1, Prodotto.Tipo.SMARTPHONE, Prodotto.Produttore.SAMSUNG);
-        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 599, 2, Prodotto.Tipo.SMARTPHONE, Prodotto.Produttore.SAMSUNG);
-        listaCarrello.add(sample1);
 
-        // inizializzo ricerca dispositivo
-        // ricercaDispositivo(in, listaMagazzino);
+        ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
+        Carrello carrello = new Carrello(listaCarrello, in);
+
+        ArrayList<Prodotto> listaMagazzino = new ArrayList<>(); // creo un arraylist di prodotto per il magazzino
+        Magazzino magazzino = new Magazzino(listaMagazzino, in);
+
+        // crea un prodotto
+        Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
+        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
+        listaCarrello.add(sample1);
+        listaCarrello.add(sample2);
 
         //MENU PRINCIPALE
         String input = Integer.toString(1);
@@ -63,10 +63,12 @@ public class Main {
                 case "6": // Visualizza il carrello
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
-                    calcoloCostoTotale(listaCarrello);
+                    System.out.println(calcoloCostoTotale(listaCarrello));
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
+                    System.out.println();
                     System.out.println(carrello.calcoloCostoMedio());
+                    System.out.println();
                     break;
                 case "9": //  Completa il tuo acquisto
                     break;
@@ -127,7 +129,7 @@ public class Main {
             System.out.println();
         }
     }
-    private static void calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
+    public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
         double costoTotale = 0;
         if (!listaCarrello.isEmpty()) {
             for (Prodotto prodotto : listaCarrello) {
@@ -136,7 +138,7 @@ public class Main {
         }else{
             System.out.println("Il tuo carrello è vuoto");
         }
-        System.out.println();
+        return costoTotale;
     }
     public static void ricercaTipo(Scanner in, ArrayList<Prodotto> listaMagazzino){
         String input = Integer.toString(1);
@@ -154,19 +156,19 @@ public class Main {
                 case "1":
                     System.out.println("Questi sono gli Smartphone disponibili: ");
                     for(Prodotto prodotto : listaMagazzino){
-                        System.out.println(Prodotto.Tipo.SMARTPHONE);
+                        System.out.println(TipoProdotto.SMARTPHONE);
                     }
                     break;
                 case "2":
                     System.out.println("Questi sono i Tablet disponibili: ");
                     for(Prodotto prodotto : listaMagazzino){
-                        System.out.println(Prodotto.Tipo.TABLET);
+                        System.out.println(TipoProdotto.TABLET);
                     }
                     break;
                 case "3":
                     System.out.println("Questi sono i Notebook disponibili: ");
                     for(Prodotto prodotto : listaMagazzino){
-                        System.out.println(Prodotto.Tipo.NOTEBOOK);
+                        System.out.println(TipoProdotto.NOTEBOOK);
                     }
                     break;
 
@@ -189,13 +191,13 @@ public class Main {
                 case "1":
                     System.out.println("Questi sono i dispositivi disponibili per produttore Samsung: ");
                     for(Prodotto prodotto : listaMagazzino){
-                        System.out.println(Prodotto.Produttore.SAMSUNG);
+                        System.out.println(ProduttoreProdotto.SAMSUNG);
                     }
                     break;
                 case "2":
                     System.out.println("Questi sono i dispositivi disponibili per produttore Apple: ");
                     for(Prodotto prodotto : listaMagazzino){
-                        System.out.println(Prodotto.Produttore.APPLE);
+                        System.out.println(ProduttoreProdotto.APPLE);
                     }
                     break;
             }

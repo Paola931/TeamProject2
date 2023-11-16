@@ -1,10 +1,6 @@
 package src;
 
 public class Prodotto {
-    enum Tipo {TABLET, SMARTPHONE, NOTEBOOK}
-    enum Produttore {SAMSUNG,APPLE}
-
-
     private String productor;
     private String model;
     private String description;
@@ -13,11 +9,11 @@ public class Prodotto {
     private int priceBuy;
     private int priceSell;
     private int id;
-    private Tipo tipo;
-    private Produttore produttore;
+    private TipoProdotto tipoProdotto;
+    private ProduttoreProdotto produttoreProdotto;
 
 
-    public Prodotto(String productor, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, Tipo tipo,Produttore produttore) {
+    public Prodotto(String productor, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, TipoProdotto tipoProdotto, ProduttoreProdotto produttoreProdotto) {
         this.productor = productor;
         this.model = model;
         this.description = description;
@@ -26,8 +22,8 @@ public class Prodotto {
         this.priceBuy = priceBuy;
         this.priceSell = priceSell;
         this.id = id;
-        this.tipo = tipo;
-        this.produttore = produttore;
+        this.tipoProdotto = tipoProdotto;
+        this.produttoreProdotto = produttoreProdotto;
     }
 
     public String getProductor() {
@@ -101,20 +97,20 @@ public class Prodotto {
         this.displayInch = displayInch;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public TipoProdotto getTipoProdotto() {
+        return tipoProdotto;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setTipo(TipoProdotto tipoProdotto) {
+        this.tipoProdotto = tipoProdotto;
     }
 
-    public Produttore getProduttore() {
-        return produttore;
+    public ProduttoreProdotto getProduttore() {
+        return produttoreProdotto;
     }
 
-    public void setProduttore(Produttore produttore) {
-        this.produttore = produttore;
+    public void setProduttore(ProduttoreProdotto produttoreProdotto) {
+        this.produttoreProdotto = produttoreProdotto;
     }
 
     @Override
