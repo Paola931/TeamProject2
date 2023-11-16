@@ -28,16 +28,9 @@ public class Carrello {
         this.listaCarrello.remove(prodotto);
         return "Il prodotto " + prodotto + " è stato rimosso correttamente dal carrello\n";
     }
-    public String calcoloCostoMedio() {
-        double costoTotale = 0;
-        if (!this.listaCarrello.isEmpty()) {
-            for (Prodotto prodotto : this.listaCarrello) {
-                costoTotale += prodotto.getPriceSell();
-            }
-            return String.valueOf(costoTotale / this.listaCarrello.size());
-        } else {
-            return "Il tuo carrello è vuoto";
-        }
+    public double calcoloCostoMedio() {
+        double costoTotale = Main.calcoloCostoTotale(this.listaCarrello);
+        return costoTotale/this.listaCarrello.size();
     }
     @Override
     public String toString() {
