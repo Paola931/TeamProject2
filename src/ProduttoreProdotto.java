@@ -1,2 +1,3 @@
-package src;public enum ProduttoreProdotto {
+package src;
+public enum ProduttoreProdotto {APPLE, SAMSUNG
 }
