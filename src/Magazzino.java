@@ -11,10 +11,12 @@ public class Magazzino {
         this.listaMagazzino = listaMagazzino;
         this.in = in;
     }
+
     public String aggiungiAMagazzino(Prodotto prodotto) {
         this.listaMagazzino.add(prodotto);
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al magazzino\n";
     }
+
     public String ricercaDispositivo() {
         System.out.println("Seleziona in che modo vuoi ricercare:");
         System.out.println("0 = esci dalla funzione di ricerca");
@@ -72,8 +74,7 @@ public class Magazzino {
 //                return ricercaProduttore(this.in, this.listaMagazzino);
                 break;
             case "3":
-//                return ricercaModello(this.in, this.listaMagazzino);
-                break;
+                return ricercaModello(this.in, this.listaMagazzino);
             case "4":
 //                return ricercaPrezzoVendita(this.in, this.listaMagazzino);
                 break;
@@ -88,6 +89,17 @@ public class Magazzino {
                 System.out.println();
         }
         return null;
+    }
+
+    public String ricercaModello(Scanner in, ArrayList<Prodotto> listaMagazzino) {
+        System.out.println("Inserisci modello: ");
+        String modello = in.nextLine();
+        for (int i = 0; i < listaMagazzino.size(); i++) {
+            if (modello.equalsIgnoreCase(listaMagazzino.get(i).getModel())) {
+                System.out.println(listaMagazzino.get(i));
+            }
+        }
+        return "ok";
     }
 
     @Override
