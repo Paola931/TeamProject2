@@ -39,7 +39,7 @@ public class Main {
 
             switch (input) {
                 case "0": //Esci dal programma
-                    System.out.println("Arrivederci e grazie per averci scelto!");
+                    System.out.println("Grazie per averci scelto. Arrivederci!");
                     break;
                 case "1": //Aggiungi  un articolo al magazzino
                     break;
