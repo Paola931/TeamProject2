@@ -20,6 +20,10 @@ public class Main {
         listaCarrello.add(sample1);
         listaCarrello.add(sample2);
 
+        listaMagazzino.add(sample1);
+        listaMagazzino.add(sample2);
+
+
         //MENU PRINCIPALE
         String input = Integer.toString(1);
         System.out.println("Inserisci un numero per iniziare un operazione:");
@@ -42,19 +46,21 @@ public class Main {
                     System.out.println("Grazie per averci scelto. Arrivederci!");
                     break;
                 case "1": //Aggiungi  un articolo al magazzino
+//                    Prodotto prodotto =
+//                    magazzino.aggiungiAMagazzino(Prodotto);
                     break;
                 case "2": //Ricarca un dispositivo nel magazzino
-//                    magazzino.ricercaDispositivo();
+                    magazzino.ricercaDispositivo();
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-                    aggiungiCarrelloId(in, listaMagazzino,listaCarrello);
+                    aggiungiCarrelloId(in, listaMagazzino, listaCarrello);
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
                         Prodotto prodotto = carrello.getProdotto();
                         carrello.rimuoviDalCarrello(prodotto);
                         magazzino.aggiungiAMagazzino(prodotto);
-                    } catch(NullPointerException npe) {
+                    } catch (NullPointerException npe) {
                         System.out.println(npe);
                     }
                     break;
@@ -129,18 +135,20 @@ public class Main {
             System.out.println();
         }
     }
+
     public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
         double costoTotale = 0;
         if (!listaCarrello.isEmpty()) {
             for (Prodotto prodotto : listaCarrello) {
                 costoTotale += prodotto.getPriceSell();
             }
-        }else{
+        } else {
             System.out.println("Il tuo carrello è vuoto");
         }
         return costoTotale;
     }
-    public static void ricercaTipo(Scanner in, ArrayList<Prodotto> listaMagazzino){
+
+    public static void ricercaTipo(Scanner in, ArrayList<Prodotto> listaMagazzino) {
         String input = Integer.toString(1);
         System.out.println("Inserisci il numero corrispondente al tipo di dispostitivo che vuoi ricercare:");
         while (!input.equals("0")) {
@@ -149,25 +157,25 @@ public class Main {
             System.out.println("2 = Tablet");
             System.out.println("3 = Notebook");
 
-            switch(input){
+            switch (input) {
                 case "0":
                     System.out.println("Stai per tornare al menù precedente");
                     break;
                 case "1":
                     System.out.println("Questi sono gli Smartphone disponibili: ");
-                    for(Prodotto prodotto : listaMagazzino){
+                    for (Prodotto prodotto : listaMagazzino) {
                         System.out.println(TipoProdotto.SMARTPHONE);
                     }
                     break;
                 case "2":
                     System.out.println("Questi sono i Tablet disponibili: ");
-                    for(Prodotto prodotto : listaMagazzino){
+                    for (Prodotto prodotto : listaMagazzino) {
                         System.out.println(TipoProdotto.TABLET);
                     }
                     break;
                 case "3":
                     System.out.println("Questi sono i Notebook disponibili: ");
-                    for(Prodotto prodotto : listaMagazzino){
+                    for (Prodotto prodotto : listaMagazzino) {
                         System.out.println(TipoProdotto.NOTEBOOK);
                     }
                     break;
@@ -176,7 +184,8 @@ public class Main {
         }
 
     }
-    public static void ricercaProduttore(Scanner in, ArrayList<Prodotto> listaMagazzino){
+
+    public static void ricercaProduttore(Scanner in, ArrayList<Prodotto> listaMagazzino) {
         String input = Integer.toString(1);
         System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
         while (!input.equals("0")) {
@@ -184,19 +193,19 @@ public class Main {
             System.out.println("1 = Samsung");
             System.out.println("2 = Apple");
 
-            switch(input){
+            switch (input) {
                 case "0":
                     System.out.println("Stai per tornare al menù precedente");
                     break;
                 case "1":
                     System.out.println("Questi sono i dispositivi disponibili per produttore Samsung: ");
-                    for(Prodotto prodotto : listaMagazzino){
+                    for (Prodotto prodotto : listaMagazzino) {
                         System.out.println(ProduttoreProdotto.SAMSUNG);
                     }
                     break;
                 case "2":
                     System.out.println("Questi sono i dispositivi disponibili per produttore Apple: ");
-                    for(Prodotto prodotto : listaMagazzino){
+                    for (Prodotto prodotto : listaMagazzino) {
                         System.out.println(ProduttoreProdotto.APPLE);
                     }
                     break;
