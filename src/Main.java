@@ -1,4 +1,4 @@
-package src;
+package TeamProject2.TeamProject2.src;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -69,7 +69,7 @@ public class Main {
                 case "6": // Visualizza il carrello
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
-                    System.out.println(calcoloCostoTotale(listaCarrello));
+                    System.out.println(Carrello.calcoloCostoTotale(listaCarrello));
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
                     System.out.println();
@@ -134,18 +134,6 @@ public class Main {
             System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
             System.out.println();
         }
-    }
-
-    public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
-        double costoTotale = 0;
-        if (!listaCarrello.isEmpty()) {
-            for (Prodotto prodotto : listaCarrello) {
-                costoTotale += prodotto.getPriceSell();
-            }
-        } else {
-            System.out.println("Il tuo carrello è vuoto");
-        }
-        return costoTotale;
     }
 
     public static void ricercaTipo(Scanner in, ArrayList<Prodotto> listaMagazzino) {

@@ -1,4 +1,4 @@
-package src;
+package TeamProject2.TeamProject2.src;
 
 public class Prodotto {
     private String productor;

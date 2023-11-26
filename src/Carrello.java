@@ -1,4 +1,4 @@
-package src;
+package TeamProject2.TeamProject2.src;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -29,7 +29,7 @@ public class Carrello {
         return "Il prodotto " + prodotto + " è stato rimosso correttamente dal carrello\n";
     }
     public double calcoloCostoMedio() {
-        double costoTotale = Main.calcoloCostoTotale(this.listaCarrello);
+        double costoTotale = calcoloCostoTotale(this.listaCarrello);
         return costoTotale/this.listaCarrello.size();
     }
     @Override
@@ -37,5 +37,16 @@ public class Carrello {
         return "Carrello{" +
                 "listaCarello=" + listaCarrello +
                 '}';
+    }
+    public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
+        double costoTotale = 0;
+        if (!listaCarrello.isEmpty()) {
+            for (Prodotto prodotto : listaCarrello) {
+                costoTotale += prodotto.getPriceSell();
+            }
+        } else {
+            System.out.println("Il tuo carrello è vuoto");
+        }
+        return costoTotale;
     }
 }
