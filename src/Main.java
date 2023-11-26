@@ -125,61 +125,6 @@ public class Main {
         System.out.println();
     }
 
-    private static void aggiungiCarrelloId(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello) {
-        boolean validoID = true;
-        System.out.println("Scrivi l'ID del prodotto che desideri aggiungere al carrello:");
-        System.out.println();
-        String input = in.nextLine();
-        System.out.println();
-        for (Prodotto prodotto : listaCarrello) {
-            if (Objects.equals(String.valueOf(prodotto.getId()), input)) {
-                listaCarrello.add(prodotto);
-                listaMagazzino.remove(prodotto);
-            }
-        }
-        if (!validoID) {
-            System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
-            System.out.println();
-        }
-    }
-
-    public static void ricercaTipo(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        String input = Integer.toString(1);
-        System.out.println("Inserisci il numero corrispondente al tipo di dispostitivo che vuoi ricercare:");
-        while (!input.equals("0")) {
-            System.out.println("0 = Esci dal programma");
-            System.out.println("1 = Smartphone");
-            System.out.println("2 = Tablet");
-            System.out.println("3 = Notebook");
-
-            switch (input) {
-                case "0":
-                    System.out.println("Stai per tornare al menù precedente");
-                    break;
-                case "1":
-                    System.out.println("Questi sono gli Smartphone disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.SMARTPHONE);
-                    }
-                    break;
-                case "2":
-                    System.out.println("Questi sono i Tablet disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.TABLET);
-                    }
-                    break;
-                case "3":
-                    System.out.println("Questi sono i Notebook disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.NOTEBOOK);
-                    }
-                    break;
-
-            }
-        }
-
-    }
-
     public static void ricercaProduttore(Scanner in, ArrayList<Prodotto> listaMagazzino) {
         String input = Integer.toString(1);
         System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
