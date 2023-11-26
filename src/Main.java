@@ -18,7 +18,6 @@ public class Main {
         Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
         Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
         listaCarrello.add(sample1);
-        listaCarrello.add(sample2);
 
         listaMagazzino.add(sample1);
         listaMagazzino.add(sample2);
@@ -53,7 +52,15 @@ public class Main {
                     magazzino.ricercaDispositivo();
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-                    aggiungiCarrelloId(in, listaMagazzino, listaCarrello);
+                    System.out.println("Scrivi l'ID del prodotto che vorresti aggiungere nel carrello: \n");
+                   try{
+                       String input1 = in.nextLine();
+                       Prodotto prodotto = magazzino.verificaDisponibilitaId(input1);
+                       carrello.aggiungiProdottoCarrello(prodotto);
+                       magazzino.rimuoviProdottoMagazzino(prodotto);
+                   }catch(Exception e){
+                       System.out.println(e);
+                   }
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {

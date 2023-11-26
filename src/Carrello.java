@@ -49,4 +49,8 @@ public class Carrello {
         }
         return costoTotale;
     }
+    public String aggiungiProdottoCarrello(Prodotto prodotto){
+        this.listaCarrello.add(prodotto);
+        return "Il prodotto " + prodotto + " è stato aggiunto correttamente al carrello \n";
+    }
 }

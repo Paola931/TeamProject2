@@ -1,6 +1,7 @@
 package TeamProject2.TeamProject2.src;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Magazzino {
@@ -112,5 +113,17 @@ public class Magazzino {
     public void printMagazzino(ArrayList<Prodotto> magazzino) {
         magazzino.forEach(System.out::println);
         System.out.println();
+    }
+    public Prodotto verificaDisponibilitaId(String input1){
+        for (Prodotto prodotto : this.listaMagazzino) {
+            if (Objects.equals(String.valueOf(prodotto.getId()), input1)) {
+                return prodotto;
+            }
+        }
+        throw new NullPointerException("Non è presente nessun prodotto con l'ID " + input1 + " all'interno del magazzino \n");
+    }
+    public String rimuoviProdottoMagazzino(Prodotto prodotto){
+        this.listaMagazzino.remove(prodotto);
+        return "Il prodotto " + prodotto + " è stato rimosso correttamente dal magazzino \n";
     }
 }
