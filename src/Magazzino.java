@@ -1,4 +1,4 @@
-package src;
+package TeamProject2.TeamProject2.src;
 
 import java.util.ArrayList;
 import java.util.Scanner;
