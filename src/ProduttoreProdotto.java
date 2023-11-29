@@ -1,3 +1,3 @@
-package TeamProject2.TeamProject2.src;
+package src;
 public enum ProduttoreProdotto {APPLE, SAMSUNG
 }
