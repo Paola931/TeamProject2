@@ -81,8 +81,7 @@ public class Magazzino {
 //                return ricercaPrezzoAcquisto(this.in, this.listaMagazzino);
                 break;
             case "6":
-//                return ricercaRangePrezzo(this.in, this.listaMagazzino);
-                break;
+               return ricercaRangePrezzo(in);
             default:
                 System.out.println("Valore non supportato: " + input);
                 System.out.println();
@@ -208,5 +207,38 @@ public class Magazzino {
         }
         return null;
     }
+    public String ricercaRangePrezzo(Scanner in) {
+        System.out.println("Inserisci il numero corrispondente alla scelta che vuoi effettuare: ");
+        System.out.println("0 = Esci dal programma");
+        System.out.println("1 = Continua con la ricerca");
+        Integer input = in.nextInt();
+        while (!input.equals(0)) {
 
+            switch (input) {
+                case 0:
+                    System.out.println("Stai per tornare al menù precedente");
+                    break;
+                case 1:
+                    System.out.print("Inserisci il prezzo minimo (es.5,00) : ");
+                    double prezzoMin = in.nextDouble();
+
+                    System.out.print("Inserisci il prezzo massimo (es.50,00) : ");
+                    double prezzoMax = in.nextDouble();
+
+
+                    System.out.println("Questi sono i dispositivi disponibili per il range di prezzo che hai impostato: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if (prodotto.getPriceSell() >= prezzoMin && prodotto.getPriceSell() <= prezzoMax) {
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+            }
+            System.out.println("Inserisci il numero corrispondente alla scelta che vuoi effettuare: ");
+            System.out.println("0 = Esci dal programma");
+            System.out.println("1 = Effettua una nuova ricerca per range di prezzo");
+            input = in.nextInt();
+        }
+        return null;
+    }
 }
