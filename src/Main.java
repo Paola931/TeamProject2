@@ -124,32 +124,4 @@ public class Main {
         }
         System.out.println();
     }
-
-    public static void ricercaProduttore(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        String input = Integer.toString(1);
-        System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
-        while (!input.equals("0")) {
-            System.out.println("0 = Esci dal programma");
-            System.out.println("1 = Samsung");
-            System.out.println("2 = Apple");
-
-            switch (input) {
-                case "0":
-                    System.out.println("Stai per tornare al menù precedente");
-                    break;
-                case "1":
-                    System.out.println("Questi sono i dispositivi disponibili per produttore Samsung: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(ProduttoreProdotto.SAMSUNG);
-                    }
-                    break;
-                case "2":
-                    System.out.println("Questi sono i dispositivi disponibili per produttore Apple: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(ProduttoreProdotto.APPLE);
-                    }
-                    break;
-            }
-        }
-    }
 }
