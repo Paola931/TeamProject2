@@ -29,13 +29,29 @@ public class Carrello {
         return "Il prodotto " + prodotto + " è stato rimosso correttamente dal carrello\n";
     }
     public double calcoloCostoMedio() {
-        double costoTotale = Main.calcoloCostoTotale(this.listaCarrello);
+        double costoTotale = calcoloCostoTotale(this.listaCarrello);
         return costoTotale/this.listaCarrello.size();
     }
+
+    public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
+        double costoTotale = 0;
+        if (!listaCarrello.isEmpty()) {
+            for (Prodotto prodotto : listaCarrello) {
+                costoTotale += prodotto.getPriceSell();
+            }
+        } else {
+            System.out.println("Il tuo carrello è vuoto");
+        }
+        return costoTotale;
+    }
+    public String aggiungiProdottoCarrello(Prodotto prodotto){
+        this.listaCarrello.add(prodotto);
+        return "Il prodotto " + prodotto + " è stato aggiunto correttamente al carrello \n";
+    }
+
     @Override
     public String toString() {
-        return "Carrello{" +
-                "listaCarello=" + listaCarrello +
-                '}';
+        return "Carrello: " +
+                "\n" + listaCarrello;
     }
 }

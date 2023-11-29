@@ -1,9 +1,22 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Magazzino {
+    public ArrayList<Prodotto> getListaMagazzino() {
+        return listaMagazzino;
+    }
+
+    public void setListaMagazzino(ArrayList<Prodotto> listaMagazzino) {
+        this.listaMagazzino = listaMagazzino;
+    }
+
+    public Scanner getIn() {
+        return in;
+    }
+
     private ArrayList<Prodotto> listaMagazzino;
     private final Scanner in;
 
@@ -66,26 +79,25 @@ public class Magazzino {
         System.out.println();
         switch (input) {
             case "0":
+                System.out.println("Grazie per averci scelto, arrivederci!");
                 break;
             case "1":
-//                return ricercaTipo(this.in, this.listaMagazzino);
-                break;
+               // return ricercaTipo(in);
             case "2":
-//                return ricercaProduttore(this.in, this.listaMagazzino);
-                break;
+               return ricercaProduttore(in);
             case "3":
+             develop-6parwYCL
                 System.out.println("Inserisci modello: ");
                 String modello = in.nextLine();
                 return ricercaModello(modello, listaMagazzino);
-            case "4":
+   case "4":
 //                return ricercaPrezzoVendita(this.in, this.listaMagazzino);
                 break;
             case "5":
 //                return ricercaPrezzoAcquisto(this.in, this.listaMagazzino);
                 break;
             case "6":
-//                return ricercaRangePrezzo(this.in, this.listaMagazzino);
-                break;
+               return ricercaRangePrezzo(in);
             default:
                 System.out.println("Valore non supportato: " + input);
                 System.out.println();
@@ -93,6 +105,7 @@ public class Magazzino {
         return null;
     }
 
+    develop-6parwYCL
     public ArrayList<Prodotto> ricercaModello(String modello, ArrayList<Prodotto> listaMagazzino) {
 
         ArrayList<Prodotto> list = new ArrayList<Prodotto>();
@@ -101,8 +114,7 @@ public class Magazzino {
                 listaMagazzino.add(modello);
             }
         }
-        return listaMagazzino;
-    }
+       
 
     @Override
     public String toString() {
@@ -114,5 +126,135 @@ public class Magazzino {
     public void printMagazzino(ArrayList<Prodotto> magazzino) {
         magazzino.forEach(System.out::println);
         System.out.println();
+    }
+    public Prodotto verificaDisponibilitaId(String input1){
+        for (Prodotto prodotto : this.listaMagazzino) {
+            if (Objects.equals(String.valueOf(prodotto.getId()), input1)) {
+                return prodotto;
+            }
+        }
+        throw new NullPointerException("Non è presente nessun prodotto con l'ID " + input1 + " all'interno del magazzino \n");
+    }
+    public String rimuoviProdottoMagazzino(Prodotto prodotto){
+        this.listaMagazzino.remove(prodotto);
+        return "Il prodotto " + prodotto + " è stato rimosso correttamente dal magazzino \n";
+    }
+    public String ricercaTipo(Scanner in) {
+        System.out.println("Inserisci il numero corrispondente al tipo di dispostitivo che vuoi ricercare:");
+        System.out.println("0 = Torna al menù precendente");
+        System.out.println("1 = Smartphone");
+        System.out.println("2 = Tablet");
+        System.out.println("3 = Notebook");
+        Integer input = in.nextInt();
+        while (input != 0) {
+
+            switch (input) {
+                case 0:
+                    System.out.println("Stai per tornare al menù precedente");
+                    break;
+                case 1:
+                    System.out.println("Questi sono gli Smartphone disponibili: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if(prodotto.getTipoProdotto() == TipoProdotto.SMARTPHONE) {
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Questi sono i Tablet disponibili: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if(prodotto.getTipoProdotto() == TipoProdotto.TABLET) {
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Questi sono i Notebook disponibili: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if(prodotto.getTipoProdotto() == TipoProdotto.NOTEBOOK) {
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+            }
+            System.out.println("Inserisci il numero corrispondente al tipo di dispositivo che vuoi ricercare:");
+            System.out.println("0 = Torna al menù precendente");
+            System.out.println("1 = Smartphone");
+            System.out.println("2 = Tablet");
+            System.out.println("3 = Notebook");
+            input = in.nextInt();
+        }
+        return null;
+    }
+    public String ricercaProduttore(Scanner in) {
+        System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
+        System.out.println("0 = Esci dal programma");
+        System.out.println("1 = Samsung");
+        System.out.println("2 = Apple");
+        Integer input = in.nextInt();
+        while (!input.equals(0)) {
+
+            switch (input) {
+                case 0:
+                    System.out.println("Stai per tornare al menù precedente");
+                    break;
+                case 1:
+                    System.out.println("Questi sono i dispositivi disponibili per produttore Samsung: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if(prodotto.getProduttore() == ProduttoreProdotto.SAMSUNG){
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Questi sono i dispositivi disponibili per produttore Apple: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if(prodotto.getProduttore() == ProduttoreProdotto.APPLE){
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+            }
+            System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
+            System.out.println("0 = Esci dal programma");
+            System.out.println("1 = Samsung");
+            System.out.println("2 = Apple");
+            input = in.nextInt();
+        }
+        return null;
+    }
+    public String ricercaRangePrezzo(Scanner in) {
+        System.out.println("Inserisci il numero corrispondente alla scelta che vuoi effettuare: ");
+        System.out.println("0 = Esci dal programma");
+        System.out.println("1 = Continua con la ricerca");
+        Integer input = in.nextInt();
+        while (!input.equals(0)) {
+
+            switch (input) {
+                case 0:
+                    System.out.println("Stai per tornare al menù precedente");
+                    break;
+                case 1:
+                    System.out.print("Inserisci il prezzo minimo (es.5,00) : ");
+                    double prezzoMin = in.nextDouble();
+
+                    System.out.print("Inserisci il prezzo massimo (es.50,00) : ");
+                    double prezzoMax = in.nextDouble();
+
+
+                    System.out.println("Questi sono i dispositivi disponibili per il range di prezzo che hai impostato: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if (prodotto.getPriceSell() >= prezzoMin && prodotto.getPriceSell() <= prezzoMax) {
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+            }
+            System.out.println("Inserisci il numero corrispondente alla scelta che vuoi effettuare: ");
+            System.out.println("0 = Esci dal programma");
+            System.out.println("1 = Effettua una nuova ricerca per range di prezzo");
+            input = in.nextInt();
+        }
+        return null;
     }
 }

@@ -18,7 +18,6 @@ public class Main {
         Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
         Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
         listaCarrello.add(sample1);
-        listaCarrello.add(sample2);
 
         listaMagazzino.add(sample1);
         listaMagazzino.add(sample2);
@@ -53,7 +52,15 @@ public class Main {
                     magazzino.ricercaDispositivo();
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-                    aggiungiCarrelloId(in, listaMagazzino, listaCarrello);
+                    System.out.println("Scrivi l'ID del prodotto che vorresti aggiungere nel carrello: \n");
+                   try{
+                       String input1 = in.nextLine();
+                       Prodotto prodotto = magazzino.verificaDisponibilitaId(input1);
+                       carrello.aggiungiProdottoCarrello(prodotto);
+                       magazzino.rimuoviProdottoMagazzino(prodotto);
+                   }catch(Exception e){
+                       System.out.println(e);
+                   }
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
@@ -67,9 +74,10 @@ public class Main {
                 case "5": // Visualizza i dispositivi presenti nel magazzino
                     break;
                 case "6": // Visualizza il carrello
+                    System.out.println(carrello);
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
-                    System.out.println(calcoloCostoTotale(listaCarrello));
+                    System.out.println(Carrello.calcoloCostoTotale(listaCarrello));
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
                     System.out.println();
@@ -116,100 +124,5 @@ public class Main {
             System.out.println("Non sono stati trovati risultati.");
         }
         System.out.println();
-    }
-
-    private static void aggiungiCarrelloId(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello) {
-        boolean validoID = true;
-        System.out.println("Scrivi l'ID del prodotto che desideri aggiungere al carrello:");
-        System.out.println();
-        String input = in.nextLine();
-        System.out.println();
-        for (Prodotto prodotto : listaCarrello) {
-            if (Objects.equals(String.valueOf(prodotto.getId()), input)) {
-                listaCarrello.add(prodotto);
-                listaMagazzino.remove(prodotto);
-            }
-        }
-        if (!validoID) {
-            System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
-            System.out.println();
-        }
-    }
-
-    public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
-        double costoTotale = 0;
-        if (!listaCarrello.isEmpty()) {
-            for (Prodotto prodotto : listaCarrello) {
-                costoTotale += prodotto.getPriceSell();
-            }
-        } else {
-            System.out.println("Il tuo carrello è vuoto");
-        }
-        return costoTotale;
-    }
-
-    public static void ricercaTipo(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        String input = Integer.toString(1);
-        System.out.println("Inserisci il numero corrispondente al tipo di dispostitivo che vuoi ricercare:");
-        while (!input.equals("0")) {
-            System.out.println("0 = Esci dal programma");
-            System.out.println("1 = Smartphone");
-            System.out.println("2 = Tablet");
-            System.out.println("3 = Notebook");
-
-            switch (input) {
-                case "0":
-                    System.out.println("Stai per tornare al menù precedente");
-                    break;
-                case "1":
-                    System.out.println("Questi sono gli Smartphone disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.SMARTPHONE);
-                    }
-                    break;
-                case "2":
-                    System.out.println("Questi sono i Tablet disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.TABLET);
-                    }
-                    break;
-                case "3":
-                    System.out.println("Questi sono i Notebook disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.NOTEBOOK);
-                    }
-                    break;
-
-            }
-        }
-
-    }
-
-    public static void ricercaProduttore(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        String input = Integer.toString(1);
-        System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
-        while (!input.equals("0")) {
-            System.out.println("0 = Esci dal programma");
-            System.out.println("1 = Samsung");
-            System.out.println("2 = Apple");
-
-            switch (input) {
-                case "0":
-                    System.out.println("Stai per tornare al menù precedente");
-                    break;
-                case "1":
-                    System.out.println("Questi sono i dispositivi disponibili per produttore Samsung: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(ProduttoreProdotto.SAMSUNG);
-                    }
-                    break;
-                case "2":
-                    System.out.println("Questi sono i dispositivi disponibili per produttore Apple: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(ProduttoreProdotto.APPLE);
-                    }
-                    break;
-            }
-        }
     }
 }
