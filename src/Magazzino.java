@@ -67,6 +67,7 @@ public class Magazzino {
         System.out.println();
         switch (input) {
             case "0":
+                System.out.println("Grazie per averci scelto, arrivederci!");
                 break;
             case "1":
                 return ricercaTipo(in);
