@@ -32,12 +32,7 @@ public class Carrello {
         double costoTotale = calcoloCostoTotale(this.listaCarrello);
         return costoTotale/this.listaCarrello.size();
     }
-    @Override
-    public String toString() {
-        return "Carrello{" +
-                "listaCarello=" + listaCarrello +
-                '}';
-    }
+
     public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
         double costoTotale = 0;
         if (!listaCarrello.isEmpty()) {
@@ -52,5 +47,11 @@ public class Carrello {
     public String aggiungiProdottoCarrello(Prodotto prodotto){
         this.listaCarrello.add(prodotto);
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al carrello \n";
+    }
+
+    @Override
+    public String toString() {
+        return "Carrello: " +
+                "\n" + listaCarrello;
     }
 }

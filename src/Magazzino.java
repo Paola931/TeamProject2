@@ -5,6 +5,18 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Magazzino {
+    public ArrayList<Prodotto> getListaMagazzino() {
+        return listaMagazzino;
+    }
+
+    public void setListaMagazzino(ArrayList<Prodotto> listaMagazzino) {
+        this.listaMagazzino = listaMagazzino;
+    }
+
+    public Scanner getIn() {
+        return in;
+    }
+
     private ArrayList<Prodotto> listaMagazzino;
     private final Scanner in;
 
@@ -18,7 +30,7 @@ public class Magazzino {
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al magazzino\n";
     }
 
-    public String ricercaDispositivo() {
+    public ArrayList<Prodotto> ricercaDispositivo() {
         System.out.println("Seleziona in che modo vuoi ricercare:");
         System.out.println("0 = esci dalla funzione di ricerca");
         System.out.println("1 = per tipo");
@@ -70,11 +82,11 @@ public class Magazzino {
                 System.out.println("Grazie per averci scelto, arrivederci!");
                 break;
             case "1":
-                return ricercaTipo(in);
+               // return ricercaTipo(in);
             case "2":
                return ricercaProduttore(in);
             case "3":
-                return ricercaModello(this.in, this.listaMagazzino);
+               // return ricercaModello(in, listaMagazzino);
             case "4":
 //                return ricercaPrezzoVendita(this.in, this.listaMagazzino);
                 break;
@@ -82,8 +94,7 @@ public class Magazzino {
 //                return ricercaPrezzoAcquisto(this.in, this.listaMagazzino);
                 break;
             case "6":
-//                return ricercaRangePrezzo(this.in, this.listaMagazzino);
-                break;
+               return ricercaRangePrezzo(in);
             default:
                 System.out.println("Valore non supportato: " + input);
                 System.out.println();
@@ -91,15 +102,16 @@ public class Magazzino {
         return null;
     }
 
-    public String ricercaModello(Scanner in, ArrayList<Prodotto> listaMagazzino) {
+    public ArrayList <Prodotto> ricercaModello(Scanner in, ArrayList<Prodotto> listaMagazzino, Prodotto prodotto) {
         System.out.println("Inserisci modello: ");
         String modello = in.nextLine();
+        ArrayList <Prodotto> list = new ArrayList<>();
         for (int i = 0; i < listaMagazzino.size(); i++) {
             if (modello.equalsIgnoreCase(listaMagazzino.get(i).getModel())) {
-                System.out.println(listaMagazzino.get(i));
+              // list.add();
             }
         }
-        return "ok";
+        return list;
     }
 
     @Override
@@ -209,5 +221,38 @@ public class Magazzino {
         }
         return null;
     }
+    public String ricercaRangePrezzo(Scanner in) {
+        System.out.println("Inserisci il numero corrispondente alla scelta che vuoi effettuare: ");
+        System.out.println("0 = Esci dal programma");
+        System.out.println("1 = Continua con la ricerca");
+        Integer input = in.nextInt();
+        while (!input.equals(0)) {
 
+            switch (input) {
+                case 0:
+                    System.out.println("Stai per tornare al menù precedente");
+                    break;
+                case 1:
+                    System.out.print("Inserisci il prezzo minimo (es.5,00) : ");
+                    double prezzoMin = in.nextDouble();
+
+                    System.out.print("Inserisci il prezzo massimo (es.50,00) : ");
+                    double prezzoMax = in.nextDouble();
+
+
+                    System.out.println("Questi sono i dispositivi disponibili per il range di prezzo che hai impostato: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if (prodotto.getPriceSell() >= prezzoMin && prodotto.getPriceSell() <= prezzoMax) {
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+            }
+            System.out.println("Inserisci il numero corrispondente alla scelta che vuoi effettuare: ");
+            System.out.println("0 = Esci dal programma");
+            System.out.println("1 = Effettua una nuova ricerca per range di prezzo");
+            input = in.nextInt();
+        }
+        return null;
+    }
 }
