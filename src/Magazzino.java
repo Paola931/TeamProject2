@@ -126,43 +126,49 @@ public class Magazzino {
         return "Il prodotto " + prodotto + " è stato rimosso correttamente dal magazzino \n";
     }
     public String ricercaTipo(Scanner in) {
-        String input = Integer.toString(1);
         System.out.println("Inserisci il numero corrispondente al tipo di dispostitivo che vuoi ricercare:");
-        while (!input.equals("0")) {
-            System.out.println("0 = Torna al menù precendente");
-            System.out.println("1 = Smartphone");
-            System.out.println("2 = Tablet");
-            System.out.println("3 = Notebook");
+        System.out.println("0 = Torna al menù precendente");
+        System.out.println("1 = Smartphone");
+        System.out.println("2 = Tablet");
+        System.out.println("3 = Notebook");
+        Integer input = in.nextInt();
+        while (input != 0) {
 
             switch (input) {
-                case "0":
+                case 0:
                     System.out.println("Stai per tornare al menù precedente");
                     break;
-                case "1":
+                case 1:
                     System.out.println("Questi sono gli Smartphone disponibili: ");
                     for (Prodotto prodotto : this.listaMagazzino) {
                         if(prodotto.getTipoProdotto() == TipoProdotto.SMARTPHONE) {
-                            System.out.println(TipoProdotto.SMARTPHONE);
+                            System.out.println(prodotto);
                         }
                     }
                     break;
-                case "2":
+                case 2:
                     System.out.println("Questi sono i Tablet disponibili: ");
                     for (Prodotto prodotto : this.listaMagazzino) {
                         if(prodotto.getTipoProdotto() == TipoProdotto.TABLET) {
-                            System.out.println(TipoProdotto.TABLET);
+                            System.out.println(prodotto);
                         }
                     }
                     break;
-                case "3":
+                case 3:
                     System.out.println("Questi sono i Notebook disponibili: ");
                     for (Prodotto prodotto : this.listaMagazzino) {
                         if(prodotto.getTipoProdotto() == TipoProdotto.NOTEBOOK) {
-                            System.out.println(TipoProdotto.NOTEBOOK);
+                            System.out.println(prodotto);
                         }
                     }
                     break;
             }
+            System.out.println("Inserisci il numero corrispondente al tipo di dispositivo che vuoi ricercare:");
+            System.out.println("0 = Torna al menù precendente");
+            System.out.println("1 = Smartphone");
+            System.out.println("2 = Tablet");
+            System.out.println("3 = Notebook");
+            input = in.nextInt();
         }
         return null;
     }
