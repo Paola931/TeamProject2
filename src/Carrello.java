@@ -1,4 +1,4 @@
-package TeamProject2.TeamProject2.src;
+package src;
 
 import java.util.ArrayList;
 import java.util.Objects;
