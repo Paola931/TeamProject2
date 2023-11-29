@@ -17,7 +17,7 @@ public class Magazzino {
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al magazzino\n";
     }
 
-    public String ricercaDispositivo() {
+    public ArrayList<Prodotto> ricercaDispositivo() {
         System.out.println("Seleziona in che modo vuoi ricercare:");
         System.out.println("0 = esci dalla funzione di ricerca");
         System.out.println("1 = per tipo");
@@ -74,7 +74,9 @@ public class Magazzino {
 //                return ricercaProduttore(this.in, this.listaMagazzino);
                 break;
             case "3":
-                return ricercaModello(this.in, this.listaMagazzino);
+                System.out.println("Inserisci modello: ");
+                String modello = in.nextLine();
+                return ricercaModello(modello, listaMagazzino);
             case "4":
 //                return ricercaPrezzoVendita(this.in, this.listaMagazzino);
                 break;
@@ -91,15 +93,15 @@ public class Magazzino {
         return null;
     }
 
-    public String ricercaModello(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        System.out.println("Inserisci modello: ");
-        String modello = in.nextLine();
+    public ArrayList<Prodotto> ricercaModello(String modello, ArrayList<Prodotto> listaMagazzino) {
+
+        ArrayList<Prodotto> list = new ArrayList<Prodotto>();
         for (int i = 0; i < listaMagazzino.size(); i++) {
             if (modello.equalsIgnoreCase(listaMagazzino.get(i).getModel())) {
-                System.out.println(listaMagazzino.get(i));
+                listaMagazzino.add(modello);
             }
         }
-        return "ok";
+        return listaMagazzino;
     }
 
     @Override
