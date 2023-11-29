@@ -1,10 +1,22 @@
-package TeamProject2.TeamProject2.src;
+package src;
 
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Magazzino {
+    public ArrayList<Prodotto> getListaMagazzino() {
+        return listaMagazzino;
+    }
+
+    public void setListaMagazzino(ArrayList<Prodotto> listaMagazzino) {
+        this.listaMagazzino = listaMagazzino;
+    }
+
+    public Scanner getIn() {
+        return in;
+    }
+
     private ArrayList<Prodotto> listaMagazzino;
     private final Scanner in;
 
@@ -18,7 +30,7 @@ public class Magazzino {
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al magazzino\n";
     }
 
-    public String ricercaDispositivo() {
+    public ArrayList<Prodotto> ricercaDispositivo() {
         System.out.println("Seleziona in che modo vuoi ricercare:");
         System.out.println("0 = esci dalla funzione di ricerca");
         System.out.println("1 = per tipo");
@@ -69,12 +81,12 @@ public class Magazzino {
             case "0":
                 break;
             case "1":
-                return ricercaTipo(in);
+               // return ricercaTipo(in);
             case "2":
 //                return ricercaProduttore(this.in, this.listaMagazzino);
                 break;
             case "3":
-                return ricercaModello(this.in, this.listaMagazzino);
+               // return ricercaModello(in, listaMagazzino);
             case "4":
 //                return ricercaPrezzoVendita(this.in, this.listaMagazzino);
                 break;
@@ -91,15 +103,16 @@ public class Magazzino {
         return null;
     }
 
-    public String ricercaModello(Scanner in, ArrayList<Prodotto> listaMagazzino) {
+    public ArrayList <Prodotto> ricercaModello(Scanner in, ArrayList<Prodotto> listaMagazzino, Prodotto prodotto) {
         System.out.println("Inserisci modello: ");
         String modello = in.nextLine();
+        ArrayList <Prodotto> list = new ArrayList<>();
         for (int i = 0; i < listaMagazzino.size(); i++) {
             if (modello.equalsIgnoreCase(listaMagazzino.get(i).getModel())) {
-                System.out.println(listaMagazzino.get(i));
+              // list.add();
             }
         }
-        return "ok";
+        return list;
     }
 
     @Override

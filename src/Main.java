@@ -1,4 +1,4 @@
-package TeamProject2.TeamProject2.src;
+package src;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -74,6 +74,7 @@ public class Main {
                 case "5": // Visualizza i dispositivi presenti nel magazzino
                     break;
                 case "6": // Visualizza il carrello
+                    System.out.println(carrello);
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
                     System.out.println(Carrello.calcoloCostoTotale(listaCarrello));
