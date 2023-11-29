@@ -86,8 +86,11 @@ public class Magazzino {
             case "2":
                return ricercaProduttore(in);
             case "3":
-               // return ricercaModello(in, listaMagazzino);
-            case "4":
+             develop-6parwYCL
+                System.out.println("Inserisci modello: ");
+                String modello = in.nextLine();
+                return ricercaModello(modello, listaMagazzino);
+   case "4":
 //                return ricercaPrezzoVendita(this.in, this.listaMagazzino);
                 break;
             case "5":
@@ -102,17 +105,16 @@ public class Magazzino {
         return null;
     }
 
-    public ArrayList <Prodotto> ricercaModello(Scanner in, ArrayList<Prodotto> listaMagazzino, Prodotto prodotto) {
-        System.out.println("Inserisci modello: ");
-        String modello = in.nextLine();
-        ArrayList <Prodotto> list = new ArrayList<>();
+    develop-6parwYCL
+    public ArrayList<Prodotto> ricercaModello(String modello, ArrayList<Prodotto> listaMagazzino) {
+
+        ArrayList<Prodotto> list = new ArrayList<Prodotto>();
         for (int i = 0; i < listaMagazzino.size(); i++) {
             if (modello.equalsIgnoreCase(listaMagazzino.get(i).getModel())) {
-              // list.add();
+                listaMagazzino.add(modello);
             }
         }
-        return list;
-    }
+       
 
     @Override
     public String toString() {
