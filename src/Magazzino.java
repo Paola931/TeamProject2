@@ -71,8 +71,7 @@ public class Magazzino {
             case "1":
                 return ricercaTipo(in);
             case "2":
-//                return ricercaProduttore(this.in, this.listaMagazzino);
-                break;
+               return ricercaProduttore(in);
             case "3":
                 return ricercaModello(this.in, this.listaMagazzino);
             case "4":
@@ -168,6 +167,43 @@ public class Magazzino {
             System.out.println("1 = Smartphone");
             System.out.println("2 = Tablet");
             System.out.println("3 = Notebook");
+            input = in.nextInt();
+        }
+        return null;
+    }
+    public String ricercaProduttore(Scanner in) {
+        System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
+        System.out.println("0 = Esci dal programma");
+        System.out.println("1 = Samsung");
+        System.out.println("2 = Apple");
+        Integer input = in.nextInt();
+        while (!input.equals(0)) {
+
+            switch (input) {
+                case 0:
+                    System.out.println("Stai per tornare al menù precedente");
+                    break;
+                case 1:
+                    System.out.println("Questi sono i dispositivi disponibili per produttore Samsung: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if(prodotto.getProduttore() == ProduttoreProdotto.SAMSUNG){
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Questi sono i dispositivi disponibili per produttore Apple: ");
+                    for (Prodotto prodotto : this.listaMagazzino) {
+                        if(prodotto.getProduttore() == ProduttoreProdotto.APPLE){
+                            System.out.println(prodotto);
+                        }
+                    }
+                    break;
+            }
+            System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
+            System.out.println("0 = Esci dal programma");
+            System.out.println("1 = Samsung");
+            System.out.println("2 = Apple");
             input = in.nextInt();
         }
         return null;
