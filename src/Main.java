@@ -73,14 +73,14 @@ public class Main {
                     System.out.println(magazzino.ricercaDispositivo());
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-                    aggiungiCarrelloId(in, listaMagazzino, listaCarrello);
+                    aggiungiCarrelloId(in, listaMagazzino,listaCarrello);
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
                         prodotto = carrello.getProdotto();
                         carrello.rimuoviDalCarrello(prodotto);
                         magazzino.aggiungiAMagazzino(prodotto);
-                    } catch (NullPointerException npe) {
+                    } catch(NullPointerException npe) {
                         System.out.println(npe);
                     }
                     break;
@@ -155,14 +155,13 @@ public class Main {
             System.out.println();
         }
     }
-
     public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
         double costoTotale = 0;
         if (!listaCarrello.isEmpty()) {
             for (Prodotto prodotto : listaCarrello) {
                 costoTotale += prodotto.getPriceSell();
             }
-        } else {
+        }else{
             System.out.println("Il tuo carrello è vuoto");
         }
         return costoTotale;
