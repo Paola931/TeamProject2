@@ -46,8 +46,8 @@ public class Main {
                     System.out.println("Grazie per averci scelto. Arrivederci!");
                     break;
                 case "1": //Aggiungi  un articolo al magazzino
-//                    Prodotto prodotto =
-//                    magazzino.aggiungiAMagazzino(Prodotto);
+                    Prodotto prodotto = new Prodotto();
+                    magazzino.aggiungiAMagazzino(Prodotto);
                     break;
                 case "2": //Ricarca un dispositivo nel magazzino
                     magazzino.ricercaDispositivo();
