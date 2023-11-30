@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in); // inizializzo Scanner
 
         ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
@@ -15,14 +15,10 @@ public class Main {
         Magazzino magazzino = new Magazzino(listaMagazzino, in);
 
         // crea un prodotto
-        Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
-        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
+        Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE);
+        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE);
         listaCarrello.add(sample1);
         listaCarrello.add(sample2);
-
-        listaMagazzino.add(sample1);
-        listaMagazzino.add(sample2);
-
 
         //MENU PRINCIPALE
         String input = Integer.toString(1);
@@ -43,21 +39,45 @@ public class Main {
 
             switch (input) {
                 case "0": //Esci dal programma
-                    System.out.println("Grazie per averci scelto. Arrivederci!");
+                    System.out.println("Arrivederci e grazie per averci scelto!");
                     break;
                 case "1": //Aggiungi  un articolo al magazzino
-                    Prodotto prodotto = new Prodotto();
-                    magazzino.aggiungiAMagazzino(Prodotto);
+                    System.out.println("Scrivi la marca del prodotto che desideri registrare: ");
+                    String producer = in.nextLine();
+                    System.out.println("Scrivi il modello del prodotto che desideri registrare: ");
+                    String model = in.nextLine();
+                    System.out.println("Aggiungi la descrizione del prodotto che desideri registrare: ");
+                    String description = in.nextLine();
+                    System.out.println("Scrivi la grandezza dello schermo del prodotto che desideri registrare: ");
+                    double displayInch = in.nextDouble();
+                    in.nextLine();
+                    System.out.println("Scrivi la memoria del prodotto che desideri registrare: ");
+                    int memory = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi il prezzo di acquisto del prodotto che desideri registrare: ");
+                    int priceBuy = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi il prezzo di vendita del prodotto che desideri registrare: ");
+                    int priceSell = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi l'id del prodotto che desideri registrare: ");
+                    int id = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi il tipo di prodotto che desideri registrare: ");
+                    TipoProdotto tipoProdotto = TipoProdotto.SMARTPHONE;
+
+                    Prodotto prodotto = Prodotto.creaArticolo(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
+                    System.out.println(magazzino.aggiungiAMagazzino(prodotto));
                     break;
-                case "2": //Ricarca un dispositivo nel magazzino
-                    magazzino.ricercaDispositivo();
+                case "2": //Ricerca un dispositivo nel magazzino
+                    System.out.println(magazzino.ricercaDispositivo());
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
                     aggiungiCarrelloId(in, listaMagazzino, listaCarrello);
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
-                        Prodotto prodotto = carrello.getProdotto();
+                        prodotto = carrello.getProdotto();
                         carrello.rimuoviDalCarrello(prodotto);
                         magazzino.aggiungiAMagazzino(prodotto);
                     } catch (NullPointerException npe) {
@@ -146,70 +166,5 @@ public class Main {
             System.out.println("Il tuo carrello è vuoto");
         }
         return costoTotale;
-    }
-
-    public static void ricercaTipo(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        String input = Integer.toString(1);
-        System.out.println("Inserisci il numero corrispondente al tipo di dispostitivo che vuoi ricercare:");
-        while (!input.equals("0")) {
-            System.out.println("0 = Esci dal programma");
-            System.out.println("1 = Smartphone");
-            System.out.println("2 = Tablet");
-            System.out.println("3 = Notebook");
-
-            switch (input) {
-                case "0":
-                    System.out.println("Stai per tornare al menù precedente");
-                    break;
-                case "1":
-                    System.out.println("Questi sono gli Smartphone disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.SMARTPHONE);
-                    }
-                    break;
-                case "2":
-                    System.out.println("Questi sono i Tablet disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.TABLET);
-                    }
-                    break;
-                case "3":
-                    System.out.println("Questi sono i Notebook disponibili: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(TipoProdotto.NOTEBOOK);
-                    }
-                    break;
-
-            }
-        }
-
-    }
-
-    public static void ricercaProduttore(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        String input = Integer.toString(1);
-        System.out.println("Inserisci il numero corrispondente al tipo di produttore che vuoi ricercare:");
-        while (!input.equals("0")) {
-            System.out.println("0 = Esci dal programma");
-            System.out.println("1 = Samsung");
-            System.out.println("2 = Apple");
-
-            switch (input) {
-                case "0":
-                    System.out.println("Stai per tornare al menù precedente");
-                    break;
-                case "1":
-                    System.out.println("Questi sono i dispositivi disponibili per produttore Samsung: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(ProduttoreProdotto.SAMSUNG);
-                    }
-                    break;
-                case "2":
-                    System.out.println("Questi sono i dispositivi disponibili per produttore Apple: ");
-                    for (Prodotto prodotto : listaMagazzino) {
-                        System.out.println(ProduttoreProdotto.APPLE);
-                    }
-                    break;
-            }
-        }
     }
 }
