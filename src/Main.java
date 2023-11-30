@@ -42,8 +42,32 @@ public class Main {
                     System.out.println("Arrivederci e grazie per averci scelto!");
                     break;
                 case "1": //Aggiungi  un articolo al magazzino
-                    Prodotto prodotto = creaArticolo();
-                    System.out.println(magazzino.aggiungiAMagazzino());
+                    System.out.println("Scrivi la marca del prodotto che desideri registrare: ");
+                    String producer = in.nextLine();
+                    System.out.println("Scrivi il modello del prodotto che desideri registrare: ");
+                    String model = in.nextLine();
+                    System.out.println("Aggiungi la descrizione del prodotto che desideri registrare: ");
+                    String description = in.nextLine();
+                    System.out.println("Scrivi la grandezza dello schermo del prodotto che desideri registrare: ");
+                    double displayInch = in.nextDouble();
+                    in.nextLine();
+                    System.out.println("Scrivi la memoria del prodotto che desideri registrare: ");
+                    int memory = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi il prezzo di acquisto del prodotto che desideri registrare: ");
+                    int priceBuy = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi il prezzo di vendita del prodotto che desideri registrare: ");
+                    int priceSell = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi l'id del prodotto che desideri registrare: ");
+                    int id = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Scrivi il tipo di prodotto che desideri registrare: ");
+                    TipoProdotto tipoProdotto = TipoProdotto.SMARTPHONE;
+
+                    Prodotto prodotto = Prodotto.creaArticolo(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
+                    System.out.println(magazzino.aggiungiAMagazzino(prodotto));
                     break;
                 case "2": //Ricerca un dispositivo nel magazzino
                     System.out.println(magazzino.ricercaDispositivo());
@@ -53,7 +77,7 @@ public class Main {
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
-                        Prodotto prodotto = carrello.getProdotto();
+                        prodotto = carrello.getProdotto();
                         carrello.rimuoviDalCarrello(prodotto);
                         magazzino.aggiungiAMagazzino(prodotto);
                     } catch(NullPointerException npe) {

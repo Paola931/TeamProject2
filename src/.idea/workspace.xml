@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c236e24-bcae-4d2c-8ab0-58a4693d43c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Magazzino.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magazzino.java" afterDir="false" />
-    </list>
+develop-El8lG1xt
+    <list default="true" id="f5b41fd3-e5f0-41d6-becf-5eaa6199bcf7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +11,31 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+ develop-El8lG1xt
+        <entry key="$PROJECT_DIR$/.." value="develop" />
+      </map>
+    </option>
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "develop-El8lG1xt",
+    "last_opened_file_path": "C:/Users/giorg/OneDrive/Desktop/TeamProject2b"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
         <entry key="$PROJECT_DIR$/.." value="develop-AzLqfM41" />
       </map>
     </option>
@@ -42,6 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701270157273</updated>
     </task>
+ develop
     <servers />
   </component>
 </project>

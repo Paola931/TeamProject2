@@ -108,8 +108,8 @@ public class Prodotto {
         return "Il Prodotto è marca " + getProducer() + ", Modello: " + getModel() + ", Misura display: " + getDisplayInch() + " Pollici, con una memoria di: " + getMemory() + "Gb. Prezzo di acquisto: " + getPriceBuy() + ", prezzo di vendita: " + getPriceSell() + ", ID dispositivo: " + getId();
     }
 
-    public Prodotto creaArticolo() {
+    public static Prodotto creaArticolo(String producer, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, TipoProdotto tipoProdotto) {
 
-        return new Prodotto();
+        return new Prodotto(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
     }
 }
