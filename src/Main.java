@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in); // inizializzo Scanner
 
         ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
@@ -15,13 +15,10 @@ public class Main {
         Magazzino magazzino = new Magazzino(listaMagazzino, in);
 
         // crea un prodotto
-        Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
-        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE, ProduttoreProdotto.SAMSUNG);
+        Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE);
+        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE);
         listaCarrello.add(sample1);
-
-        listaMagazzino.add(sample1);
-        listaMagazzino.add(sample2);
-
+        listaCarrello.add(sample2);
 
         //MENU PRINCIPALE
         String input = Integer.toString(1);
@@ -42,42 +39,33 @@ public class Main {
 
             switch (input) {
                 case "0": //Esci dal programma
-                    System.out.println("Grazie per averci scelto. Arrivederci!");
+                    System.out.println("Arrivederci e grazie per averci scelto!");
                     break;
                 case "1": //Aggiungi  un articolo al magazzino
-//                    Prodotto prodotto =
-//                    magazzino.aggiungiAMagazzino(Prodotto);
+                    Prodotto prodotto = creaArticolo();
+                    System.out.println(magazzino.aggiungiAMagazzino());
                     break;
-                case "2": //Ricarca un dispositivo nel magazzino
-                    magazzino.ricercaDispositivo();
+                case "2": //Ricerca un dispositivo nel magazzino
+                    System.out.println(magazzino.ricercaDispositivo());
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-                    System.out.println("Scrivi l'ID del prodotto che vorresti aggiungere nel carrello: \n");
-                   try{
-                       String input1 = in.nextLine();
-                       Prodotto prodotto = magazzino.verificaDisponibilitaId(input1);
-                       carrello.aggiungiProdottoCarrello(prodotto);
-                       magazzino.rimuoviProdottoMagazzino(prodotto);
-                   }catch(Exception e){
-                       System.out.println(e);
-                   }
+                    aggiungiCarrelloId(in, listaMagazzino,listaCarrello);
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
                         Prodotto prodotto = carrello.getProdotto();
                         carrello.rimuoviDalCarrello(prodotto);
                         magazzino.aggiungiAMagazzino(prodotto);
-                    } catch (NullPointerException npe) {
+                    } catch(NullPointerException npe) {
                         System.out.println(npe);
                     }
                     break;
                 case "5": // Visualizza i dispositivi presenti nel magazzino
                     break;
                 case "6": // Visualizza il carrello
-                    System.out.println(carrello);
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
-                    System.out.println(Carrello.calcoloCostoTotale(listaCarrello));
+                    System.out.println(calcoloCostoTotale(listaCarrello));
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
                     System.out.println();
@@ -124,5 +112,34 @@ public class Main {
             System.out.println("Non sono stati trovati risultati.");
         }
         System.out.println();
+    }
+
+    private static void aggiungiCarrelloId(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello) {
+        boolean validoID = true;
+        System.out.println("Scrivi l'ID del prodotto che desideri aggiungere al carrello:");
+        System.out.println();
+        String input = in.nextLine();
+        System.out.println();
+        for (Prodotto prodotto : listaCarrello) {
+            if (Objects.equals(String.valueOf(prodotto.getId()), input)) {
+                listaCarrello.add(prodotto);
+                listaMagazzino.remove(prodotto);
+            }
+        }
+        if (!validoID) {
+            System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
+            System.out.println();
+        }
+    }
+    public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
+        double costoTotale = 0;
+        if (!listaCarrello.isEmpty()) {
+            for (Prodotto prodotto : listaCarrello) {
+                costoTotale += prodotto.getPriceSell();
+            }
+        }else{
+            System.out.println("Il tuo carrello è vuoto");
+        }
+        return costoTotale;
     }
 }

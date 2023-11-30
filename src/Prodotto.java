@@ -1,7 +1,7 @@
 package src;
 
 public class Prodotto {
-    private String productor;
+    private String producer;
     private String model;
     private String description;
     private double displayInch;
@@ -10,11 +10,10 @@ public class Prodotto {
     private int priceSell;
     private int id;
     private TipoProdotto tipoProdotto;
-    private ProduttoreProdotto produttoreProdotto;
 
 
-    public Prodotto(String productor, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, TipoProdotto tipoProdotto, ProduttoreProdotto produttoreProdotto) {
-        this.productor = productor;
+    public Prodotto(String producer, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, TipoProdotto tipoProdotto) {
+        this.producer = producer;
         this.model = model;
         this.description = description;
         this.displayInch = displayInch;
@@ -23,15 +22,14 @@ public class Prodotto {
         this.priceSell = priceSell;
         this.id = id;
         this.tipoProdotto = tipoProdotto;
-        this.produttoreProdotto = produttoreProdotto;
     }
 
-    public String getProductor() {
-        return productor;
+    public String getProducer() {
+        return producer;
     }
 
-    public void setProductor(String productor) {
-        this.productor = productor;
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
 
     public String getModel() {
@@ -105,16 +103,13 @@ public class Prodotto {
         this.tipoProdotto = tipoProdotto;
     }
 
-    public ProduttoreProdotto getProduttore() {
-        return produttoreProdotto;
-    }
-
-    public void setProduttore(ProduttoreProdotto produttoreProdotto) {
-        this.produttoreProdotto = produttoreProdotto;
-    }
-
     @Override
     public String toString() {
-        return "Il Prodotto è marca " + getProductor() + ", Modello: " + getModel() + ", Misura display: " + getDisplayInch() + " Pollici, con una memoria di: " + getMemory() + "Gb. Prezzo di acquisto: " + getPriceBuy() + ", prezzo di vendita: " + getPriceSell() + ", ID dispositivo: " + getId();
+        return "Il Prodotto è marca " + getProducer() + ", Modello: " + getModel() + ", Misura display: " + getDisplayInch() + " Pollici, con una memoria di: " + getMemory() + "Gb. Prezzo di acquisto: " + getPriceBuy() + ", prezzo di vendita: " + getPriceSell() + ", ID dispositivo: " + getId();
+    }
+
+    public Prodotto creaArticolo() {
+
+        return new Prodotto();
     }
 }
