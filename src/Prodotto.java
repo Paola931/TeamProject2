@@ -1,18 +1,20 @@
 package src;
 
+import java.util.Scanner;
+
 public class Prodotto {
     private String producer;
     private String model;
     private String description;
     private double displayInch;
-    private int memory;
-    private int priceBuy;
-    private int priceSell;
+    private double memory;
+    private double priceBuy;
+    private double priceSell;
     private int id;
     private TipoProdotto tipoProdotto;
 
 
-    public Prodotto(String producer, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, TipoProdotto tipoProdotto) {
+    public Prodotto(String producer, String model, String description, double displayInch, double memory, double priceBuy, double priceSell, int id, TipoProdotto tipoProdotto) {
         this.producer = producer;
         this.model = model;
         this.description = description;
@@ -59,7 +61,7 @@ public class Prodotto {
         this.displayInch = displayInch;
     }
 
-    public int getMemory() {
+    public double getMemory() {
         return memory;
     }
 
@@ -67,7 +69,7 @@ public class Prodotto {
         this.memory = memory;
     }
 
-    public int getPriceBuy() {
+    public double getPriceBuy() {
         return priceBuy;
     }
 
@@ -75,7 +77,7 @@ public class Prodotto {
         this.priceBuy = priceBuy;
     }
 
-    public int getPriceSell() {
+    public double getPriceSell() {
         return priceSell;
     }
 
@@ -108,8 +110,85 @@ public class Prodotto {
         return "Il Prodotto è marca " + getProducer() + ", Modello: " + getModel() + ", Misura display: " + getDisplayInch() + " Pollici, con una memoria di: " + getMemory() + "Gb. Prezzo di acquisto: " + getPriceBuy() + ", prezzo di vendita: " + getPriceSell() + ", ID dispositivo: " + getId();
     }
 
-    public static Prodotto creaArticolo(String producer, String model, String description, double displayInch, int memory, int priceBuy, int priceSell, int id, TipoProdotto tipoProdotto) {
-
+    public static Prodotto creaArticolo() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Scrivi la marca del prodotto che desideri registrare:");
+        String producer = in.nextLine();
+        while(producer.isEmpty()) {
+            System.out.println("Inserisci un valore valido.");
+            System.out.println("Scrivi la marca del prodotto che desideri registrare:");
+            producer = in.nextLine();
+        }
+        System.out.println("Scrivi il modello del prodotto che desideri registrare:");
+        String model = in.nextLine();
+        while(model.isEmpty()) {
+            System.out.println("Inserisci un valore valido.");
+            System.out.println("Scrivi il modello del prodotto che desideri registrare:");
+            model = in.nextLine();
+        }
+        System.out.println("Aggiungi la descrizione del prodotto che desideri registrare:");
+        String description = in.nextLine();
+        double displayInch;
+        while(true) {
+            try {
+                System.out.println("Scrivi la grandezza dello schermo del prodotto che desideri registrare:");
+                displayInch = Double.parseDouble(in.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Inserisci un valore valido.");
+            }
+        }
+        double memory;
+        while(true) {
+            try {
+                System.out.println("Scrivi la memoria del prodotto che desideri registrare:");
+                memory = Double.parseDouble(in.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Inserisci un valore valido.");
+            }
+        }
+        double priceBuy;
+        while(true) {
+            try {
+                System.out.println("Scrivi il prezzo di acquisto del prodotto che desideri registrare:");
+                priceBuy = Double.parseDouble(in.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Inserisci un valore valido.");
+            }
+        }
+        double priceSell;
+        while(true) {
+            try {
+                System.out.println("Scrivi il prezzo di vendita del prodotto che desideri registrare:");
+                priceSell = Double.parseDouble(in.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Inserisci un valore valido.");
+            }
+        }
+        int id;
+        while(true) {
+            try {
+                System.out.println("Scrivi l'id del prodotto che desideri registrare:");
+                id = Integer.parseInt(in.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Inserisci un valore valido.");
+            }
+        }
+        String tipoTemp = "";
+        TipoProdotto tipoProdotto = TipoProdotto.NOTFUND;
+        while(!tipoTemp.equalsIgnoreCase("smartphone") && !tipoTemp.equalsIgnoreCase("notebook") && !tipoTemp.equalsIgnoreCase("tablet")) {
+            System.out.println("Scrivi il tipo di prodotto che desideri registrare:\nOpzioni:\n - smartphone\n - notebook\n - tablet");
+            tipoTemp = in.nextLine();
+        }
+        switch(tipoTemp.toLowerCase()) {
+            case "smartphone": tipoProdotto = TipoProdotto.SMARTPHONE;
+            case "notebook": tipoProdotto = TipoProdotto.NOTEBOOK;
+            case "tablet": tipoProdotto = TipoProdotto.TABLET;
+        }
         return new Prodotto(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
     }
 }

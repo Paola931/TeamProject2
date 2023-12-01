@@ -17,7 +17,7 @@ public class Main {
         // crea un prodotto
         Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 1, TipoProdotto.SMARTPHONE);
         Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 2, TipoProdotto.SMARTPHONE);
-        listaCarrello.add(sample1);
+        listaMagazzino.add(sample1);
         listaCarrello.add(sample2);
 
         //MENU PRINCIPALE
@@ -42,31 +42,8 @@ public class Main {
                     System.out.println("Arrivederci e grazie per averci scelto!");
                     break;
                 case "1": //Aggiungi  un articolo al magazzino
-                    System.out.println("Scrivi la marca del prodotto che desideri registrare: ");
-                    String producer = in.nextLine();
-                    System.out.println("Scrivi il modello del prodotto che desideri registrare: ");
-                    String model = in.nextLine();
-                    System.out.println("Aggiungi la descrizione del prodotto che desideri registrare: ");
-                    String description = in.nextLine();
-                    System.out.println("Scrivi la grandezza dello schermo del prodotto che desideri registrare: ");
-                    double displayInch = in.nextDouble();
-                    in.nextLine();
-                    System.out.println("Scrivi la memoria del prodotto che desideri registrare: ");
-                    int memory = in.nextInt();
-                    in.nextLine();
-                    System.out.println("Scrivi il prezzo di acquisto del prodotto che desideri registrare: ");
-                    int priceBuy = in.nextInt();
-                    in.nextLine();
-                    System.out.println("Scrivi il prezzo di vendita del prodotto che desideri registrare: ");
-                    int priceSell = in.nextInt();
-                    in.nextLine();
-                    System.out.println("Scrivi l'id del prodotto che desideri registrare: ");
-                    int id = in.nextInt();
-                    in.nextLine();
-                    System.out.println("Scrivi il tipo di prodotto che desideri registrare: ");
-                    TipoProdotto tipoProdotto = TipoProdotto.SMARTPHONE;
-
-                    Prodotto prodotto = Prodotto.creaArticolo(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
+                    Prodotto prodotto = Prodotto.creaArticolo();
+                    System.out.println(prodotto);
                     System.out.println(magazzino.aggiungiAMagazzino(prodotto));
                     break;
                 case "2": //Ricerca un dispositivo nel magazzino
@@ -85,6 +62,7 @@ public class Main {
                     }
                     break;
                 case "5": // Visualizza i dispositivi presenti nel magazzino
+                    magazzino.printMagazzino(listaMagazzino);
                     break;
                 case "6": // Visualizza il carrello
                     break;
