@@ -1,3 +1,3 @@
 package src;
-public enum TipoProdotto {SMARTPHONE, TABLET, NOTEBOOK
+public enum TipoProdotto {SMARTPHONE, TABLET, NOTEBOOK, NOTFUND
 }
