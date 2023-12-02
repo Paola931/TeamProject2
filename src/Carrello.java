@@ -49,6 +49,10 @@ public class Carrello {
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al carrello \n";
     }
 
+    public void completaAcquisto (){
+        this.listaCarrello.clear();
+    }
+
     @Override
     public String toString() {
         return "Carrello: " +
