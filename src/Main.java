@@ -76,6 +76,9 @@ public class Main {
                     System.out.println();
                     break;
                 case "9": //  Completa il tuo acquisto
+                    System.out.println(carrello);
+                    carrello.completaAcquisto();
+                    System.out.println("Acquisto effettuato!");
                     break;
                 default:
                     System.out.println("Valore non supportato: " + input);
