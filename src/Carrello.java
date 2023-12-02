@@ -51,6 +51,10 @@ public class Carrello {
 
     public void completaAcquisto (){
         this.listaCarrello.clear();
+
+    public void printCarrello(ArrayList<Prodotto> listaCarrello) {
+        listaCarrello.forEach(System.out::println);
+        System.out.println();
     }
 
     @Override
