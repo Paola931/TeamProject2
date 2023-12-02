@@ -49,6 +49,11 @@ public class Carrello {
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al carrello \n";
     }
 
+    public void printCarrello(ArrayList<Prodotto> listaCarrello) {
+        listaCarrello.forEach(System.out::println);
+        System.out.println();
+    }
+
     @Override
     public String toString() {
         return "Carrello: " +
