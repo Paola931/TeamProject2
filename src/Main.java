@@ -65,6 +65,9 @@ public class Main {
                     magazzino.printMagazzino(listaMagazzino);
                     break;
                 case "6": // Visualizza il carrello
+                    System.out.println();
+                    System.out.println(carrello);
+                    System.out.println();
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
                     System.out.println(calcoloCostoTotale(listaCarrello));
