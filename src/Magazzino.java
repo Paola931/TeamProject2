@@ -1,5 +1,9 @@
 package src;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -21,8 +25,9 @@ public class Magazzino {
         this.in = in;
     }
 
-    public ArrayList<Prodotto> aggiungiAMagazzino(Prodotto prodotto) {
-        this.lista.add(prodotto);
+    public ArrayList<Prodotto> aggiungiAMagazzino(Prodotto prodotto) throws SQLException {
+        String q = "INSERT INTO Prodotto (ProdottoId, Produttore, Modello, Descrizione, Display, Memoria, PrezzoAcquisto, PrezzoVendita, Tipo) VALUES ('" + prodotto.getId() + "', '" + prodotto.getProducer() + "', '" + prodotto.getModel() + "', '" + prodotto.getDescription() + "', '" + prodotto.getDisplayInch() + "', '" + prodotto.getMemory() + "', '" + prodotto.getPriceBuy() + "', '" + prodotto.getPriceSell() + "', '" + prodotto.getTipoProdotto() + "');";
+        DBManager.connection().executeUpdate(q);
         return lista;
     }
 

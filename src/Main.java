@@ -44,7 +44,11 @@ public class Main {
                 case "1": //Aggiungi  un articolo al magazzino
                     Prodotto prodotto = Prodotto.creaArticolo();
                     System.out.println(prodotto);
-                    System.out.println(magazzino.aggiungiAMagazzino(prodotto));
+                    try {
+                        System.out.println(magazzino.aggiungiAMagazzino(prodotto));
+                    } catch(Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case "2": //Ricerca un dispositivo nel magazzino
                     System.out.println(magazzino.ricercaDispositivo());
