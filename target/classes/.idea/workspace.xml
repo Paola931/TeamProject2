@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8fa9c607-db00-4500-b1ac-6d5afb7c09e1" name="Changes" comment="Some more quick fixes">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgettoGruppo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoGruppo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/ProgettoGruppo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/ProgettoGruppo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/ProgettoGruppo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/ProgettoGruppo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/ProgettoGruppo/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/ProgettoGruppo/ProgettoGruppo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/Carrello.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/Magazzino.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/Prodotto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/TeamProject2b.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/TipoProdotto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/out/production/TeamProject2b/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/out/production/TeamProject2b/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/out/production/TeamProject2b/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/out/production/TeamProject2b/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoGruppo/src/out/production/TeamProject2b/src/TeamProject2b.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Magazzino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Magazzino.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ToXer04&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4fd0a3f9-ca2a-4b4e-834b-52b863927de6" />
+        <option name="url" value="https://github.com/Paola931/TeamProject2.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2XFUPDYxGMu3NLFD9nskCD9g5Qn" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "quickFix",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Administrator/OneDrive/Desktop/Develhope/Java/Esercizio",
+    "settings.editor.selected.configurable": "preferences.editor"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fa9c607-db00-4500-b1ac-6d5afb7c09e1" name="Changes" comment="" />
+      <created>1698224295185</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698224295185</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Some more quick fixes">
+      <option name="closed" value="true" />
+      <created>1701450589435</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701450589435</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Some more quick fixes">
+      <option name="closed" value="true" />
+      <created>1701450602017</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701450602017</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Some more quick fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some more quick fixes" />
+  </component>
+</project>
