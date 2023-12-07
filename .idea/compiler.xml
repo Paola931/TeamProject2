@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+<<<<<<< HEAD
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -11,6 +12,10 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Magazzino" target="1.5" />
+=======
+    <bytecodeTargetLevel>
+      <module name="ProgettoGruppo" target="21" />
+>>>>>>> develop
     </bytecodeTargetLevel>
   </component>
 </project>

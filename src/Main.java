@@ -69,6 +69,7 @@ public class Main {
                     magazzino.printMagazzino(listaMagazzino);
                     break;
                 case "6": // Visualizza il carrello
+                    carrello.printCarrello(listaCarrello);
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
                     System.out.println(calcoloCostoTotale(listaCarrello));
@@ -79,6 +80,9 @@ public class Main {
                     System.out.println();
                     break;
                 case "9": //  Completa il tuo acquisto
+                    System.out.println(carrello);
+                    carrello.completaAcquisto();
+                    System.out.println("Acquisto effettuato!");
                     break;
                 default:
                     System.out.println("Valore non supportato: " + input);
