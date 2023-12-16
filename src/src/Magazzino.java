@@ -128,7 +128,7 @@ public class Magazzino {
                 System.out.println("Questi sono gli Smartphone disponibili: ");
                 try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
                     Statement s = c.createStatement();
-                    String q1 = "SELECT * FROM `Prodotto` AS p WHERE tipo = 'SMARTPHONE';";
+                    String q1 = "SELECT * FROM `Prodotto` WHERE tipo = 'SMARTPHONE';";
                     s.executeQuery(q1);
                     for (Prodotto prodotto : lista) {
                         System.out.println(prodotto);
@@ -141,7 +141,7 @@ public class Magazzino {
                 System.out.println("Questi sono i Tablet disponibili: ");
                 try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
                     Statement s = c.createStatement();
-                    String q1 = "SELECT * FROM `Prodotto` AS p WHERE tipo = 'TABLET';";
+                    String q1 = "SELECT * FROM `Prodotto` WHERE tipo = 'TABLET';";
                     s.executeQuery(q1);
                     for (Prodotto prodotto : lista) {
                         System.out.println(prodotto);
@@ -154,7 +154,7 @@ public class Magazzino {
                 System.out.println("Questi sono i Notebook disponibili: ");
                 try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
                     Statement s = c.createStatement();
-                    String q1 = "SELECT * FROM `Prodotto` AS p WHERE tipo = 'NOTEBOOK';";
+                    String q1 = "SELECT * FROM `Prodotto` WHERE tipo = 'NOTEBOOK';";
                     s.executeQuery(q1);
                     for (Prodotto prodotto : lista) {
                         System.out.println(prodotto);
@@ -167,14 +167,33 @@ public class Magazzino {
         return list;
 
     }
-    public static ArrayList<Prodotto> ricercaProduttore(String produttore, ArrayList<Prodotto> lista) {
+    public static ArrayList<Prodotto> ricercaProduttore(String produttore, ArrayList<Prodotto> lista) throws Exception {
         ArrayList<Prodotto> list = new ArrayList<>();
-        for (Prodotto prodotto : lista) {
-            if (prodotto.getProducer().equals(produttore)) {
-                list.add(prodotto);
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            String q1 = "SELECT * FROM `Prodotto` WHERE produttore = '" + produttore + "';";
+            s.executeQuery(q1);
+
+            ResultSet result = s.executeQuery(q1);
+            while (result.next()) {
+//                for(Prodotto p : lista){
+//                    if(p.getId() == result.getInt("id")){
+//                        list.add(p);
+//                    }
+//                }
+                System.out.println(
+                        result.getString("id")
+                );
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return list;
+        System.out.println(list);
+        if(!list.isEmpty()) {
+            return null; //list;
+        }else{
+            throw new Exception("Non sono stati trovati risultati con i parametri di ricerca inseriti");
+        }
     }
     public static ArrayList<Prodotto> ricercaModello(String modello, ArrayList<Prodotto> lista) {
         ArrayList<Prodotto> list = new ArrayList<>();
