@@ -1,64 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e59bd21-fab4-44ae-b4b5-d24c58fba886" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgettoGruppo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoGruppo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-Nov-23_5_59_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-Nov-23_5_59_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Merge_at_29-Nov-23_4_38_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/shelf/Uncommitted_changes_before_Merge_at_29-Nov-23_4_38_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Carrello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carrello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Magazzino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Magazzino.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ProgettoGruppo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ProgettoGruppo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-Nov-23_5_59_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-Nov-23_5_59_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/Carrello.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/Carrello.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/Magazzino.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/Magazzino.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/ProgettoGruppo.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/ProgettoGruppo/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/ProgettoGruppo/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/ProgettoGruppo/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/ProgettoGruppo/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/ProgettoGruppo/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/ProgettoGruppo/ProgettoGruppo.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_29-Nov-23_4_35_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-Nov-23_5_59_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-Nov-23_5_59_PM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-Nov-23_5_59_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/TeamProject2b.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/out/production/TeamProject2b/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/out/production/TeamProject2b/src/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/out/production/TeamProject2b/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/out/production/TeamProject2b/src/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/out/production/TeamProject2b/src/TeamProject2b.iml" beforeDir="false" />
-    </list>
+develop-El8lG1xt
+    <list default="true" id="f5b41fd3-e5f0-41d6-becf-5eaa6199bcf7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,43 +11,62 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+ develop-El8lG1xt
+        <entry key="$PROJECT_DIR$/.." value="develop" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "develop-El8lG1xt",
+    "last_opened_file_path": "C:/Users/giorg/OneDrive/Desktop/TeamProject2b"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+        <entry key="$PROJECT_DIR$/.." value="develop-AzLqfM41" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
+  "customColor": "",
+  "associatedIndex": 3
 }]]></component>
-  <component name="ProjectId" id="2ZdevlllyVY4n4iH71TZ8BZyouj" />
+  <component name="ProjectId" id="2Yr42NBp1D4Xjm8HfA1pwLBPDu4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "c/PtrTsfle-DBFIX",
-    "last_opened_file_path": "C:/Users/konta/Desktop/TeamProject2",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
+    "git-widget-placeholder": "develop-6parwYCL"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4e59bd21-fab4-44ae-b4b5-d24c58fba886" name="Changes" comment="" />
-      <created>1702756615308</created>
+      <changelist id="7c236e24-bcae-4d2c-8ab0-58a4693d43c1" name="Changes" comment="" />
+      <created>1701270157273</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1702756615308</updated>
+      <updated>1701270157273</updated>
     </task>
+ develop
     <servers />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
