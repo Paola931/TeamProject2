@@ -1,14 +1,14 @@
 package src;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Magazzino {
+    private static final String URL = "jdbc:mysql://sql8.freesqldatabase.com:3306/sql8666174";
+    private static final String USER = "sql8666174";
+    private static final String PASSWORD = "pdsKu4WEkV";
     private static ArrayList<Prodotto> lista;
     private final Scanner in;
 
@@ -126,30 +126,46 @@ public class Magazzino {
                 break;
             case 1:
                 System.out.println("Questi sono gli Smartphone disponibili: ");
-                for (Prodotto prodotto : lista) {
-                    if (prodotto.getTipoProdotto() == TipoProdotto.SMARTPHONE) {
+                try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                    Statement s = c.createStatement();
+                    String q1 = "SELECT * FROM `Prodotto` AS p WHERE tipo = 'SMARTPHONE';";
+                    s.executeQuery(q1);
+                    for (Prodotto prodotto : lista) {
                         System.out.println(prodotto);
                     }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
                 break;
             case 2:
                 System.out.println("Questi sono i Tablet disponibili: ");
-                for (Prodotto prodotto : lista) {
-                    if (prodotto.getTipoProdotto() == TipoProdotto.TABLET) {
+                try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                    Statement s = c.createStatement();
+                    String q1 = "SELECT * FROM `Prodotto` AS p WHERE tipo = 'TABLET';";
+                    s.executeQuery(q1);
+                    for (Prodotto prodotto : lista) {
                         System.out.println(prodotto);
                     }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
                 break;
             case 3:
                 System.out.println("Questi sono i Notebook disponibili: ");
-                for (Prodotto prodotto : lista) {
-                    if (prodotto.getTipoProdotto() == TipoProdotto.NOTEBOOK) {
+                try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                    Statement s = c.createStatement();
+                    String q1 = "SELECT * FROM `Prodotto` AS p WHERE tipo = 'NOTEBOOK';";
+                    s.executeQuery(q1);
+                    for (Prodotto prodotto : lista) {
                         System.out.println(prodotto);
                     }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
                 break;
         }
         return list;
+
     }
     public static ArrayList<Prodotto> ricercaProduttore(String produttore, ArrayList<Prodotto> lista) {
         ArrayList<Prodotto> list = new ArrayList<>();

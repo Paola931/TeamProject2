@@ -12,6 +12,7 @@ public class Carrello {
         this.listaCarrello = listaCarrello;
         this.in = in;
     }
+
     public Prodotto getProdotto() {
         System.out.println("\nScrivi l'ID del prodotto che vuoi rimuovere dal carrello:\n");
         String input = this.in.nextLine();
@@ -28,9 +29,10 @@ public class Carrello {
         this.listaCarrello.remove(prodotto);
         return "Il prodotto " + prodotto + " è stato rimosso correttamente dal carrello\n";
     }
+
     public double calcoloCostoMedio() {
         double costoTotale = calcoloCostoTotale(this.listaCarrello);
-        return costoTotale/this.listaCarrello.size();
+        return costoTotale / this.listaCarrello.size();
     }
 
     public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
@@ -44,19 +46,19 @@ public class Carrello {
         }
         return costoTotale;
     }
-    public String aggiungiProdottoCarrello(Prodotto prodotto){
+
+    public String aggiungiProdottoCarrello(Prodotto prodotto) {
         this.listaCarrello.add(prodotto);
         return "Il prodotto " + prodotto + " è stato aggiunto correttamente al carrello \n";
     }
 
-    public void completaAcquisto (){
+    public void completaAcquisto() {
         this.listaCarrello.clear();
-
-    public void printCarrello(ArrayList<Prodotto> listaCarrello) {
+    }
+    public void printCarrello (ArrayList < Prodotto > listaCarrello) {
         listaCarrello.forEach(System.out::println);
         System.out.println();
     }
-
     @Override
     public String toString() {
         return "Carrello: " +
