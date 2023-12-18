@@ -26,9 +26,36 @@ public class Magazzino {
     }
 
     public ArrayList<Prodotto> aggiungiAMagazzino(Prodotto prodotto) throws SQLException {
-        String q = "INSERT INTO Prodotto (ProdottoId, Produttore, Modello, Descrizione, Display, Memoria, PrezzoAcquisto, PrezzoVendita, Tipo) VALUES ('" + prodotto.getId() + "', '" + prodotto.getProducer() + "', '" + prodotto.getModel() + "', '" + prodotto.getDescription() + "', '" + prodotto.getDisplayInch() + "', '" + prodotto.getMemory() + "', '" + prodotto.getPriceBuy() + "', '" + prodotto.getPriceSell() + "', '" + prodotto.getTipoProdotto() + "');";
-        DBManager.connection().executeUpdate(q);
-        return lista;
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            if (controllaPresenzaMagazzino(prodotto)) {
+                String q = "UPDATE Prodotto SET quantità = quantità + 1 WHERE produttore = '" + prodotto.getProducer() + "' AND modello = '" + prodotto.getModel() +
+                        "' AND descrizione = '" + prodotto.getDescription() + "'"+ /*AND display = '" + prodotto.getDisplayInch()+ "' */ " AND memoria = '" + prodotto.getMemory() + "' " +
+                        "AND prezzoAcquisto = '" + prodotto.getPriceBuy() + "' AND prezzoVendita = '" + prodotto.getPriceSell() + "' AND tipo = '" + prodotto.getTipoProdotto() + "';";
+                s.executeUpdate(q);
+            } else {
+                String q = "INSERT INTO Prodotto (produttore, modello, descrizione, display, memoria, prezzoAcquisto, prezzoVendita, tipo) VALUES ('" + prodotto.getProducer() + "', '" + prodotto.getModel() + "', '" + prodotto.getDescription() + "', '" + prodotto.getDisplayInch() + "', '" + prodotto.getMemory() + "', '" + prodotto.getPriceBuy() + "', '" + prodotto.getPriceSell() + "', '" + prodotto.getTipoProdotto() + "');";
+                s.executeUpdate(q);
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+
+    private boolean controllaPresenzaMagazzino(Prodotto prodotto) throws SQLException {
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            String q1 = "SELECT * FROM `Magazzino` WHERE produttore = '" + prodotto.getProducer() + "' AND modello = '" + prodotto.getModel() + "' AND descrizione = '" + prodotto.getDescription() + "' " +
+                     /*AND display = '" + prodotto.getDisplayInch()+ "'*/ " AND memoria = '" + prodotto.getMemory() + "' AND prezzoAcquisto = '" + prodotto.getPriceBuy() + "' AND prezzoVendita = '" + prodotto.getPriceSell() + "' AND tipo = '" + prodotto.getTipoProdotto() + "';";
+            ResultSet result = s.executeQuery(q1);
+            if (result.next()) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
     }
 
     public ArrayList<Prodotto> ricercaDispositivo() throws Exception {
@@ -178,13 +205,15 @@ public class Magazzino {
 
             ResultSet result = s.executeQuery(q1);
             while (result.next()) {
-//                for(Prodotto p : lista){
-//                    if(p.getId() == result.getInt("id")){
-//                        list.add(p);
-//                    }
-//                }
                 System.out.println(
-                        result.getString("id")
+                        "ID prodotto: " + result.getString("id") + " - " +
+                                "Produttore: " + result.getString("produttore") + " - " +
+                                "Modello: " + result.getString("modello") + " - " +
+                                "Descrizione: " + result.getString("descrizione") + " - " +
+                                "Pollici Display: " + result.getString("display") + " - " +
+                                "GB di Memoria: " + result.getString("memoria") + " - " +
+                                "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                                "Tipologia prodotto: " + result.getString("tipo")
                 );
             }
         } catch (SQLException e) {
@@ -264,15 +293,6 @@ public class Magazzino {
     public void printMagazzino(ArrayList<Prodotto> magazzino) {
         magazzino.forEach(System.out::println);
         System.out.println();
-    }
-
-    public Prodotto verificaDisponibilitaId(String input1) {
-        for (Prodotto prodotto : this.lista) {
-            if (Objects.equals(String.valueOf(prodotto.getId()), input1)) {
-                return prodotto;
-            }
-        }
-        throw new NullPointerException("Non è presente nessun prodotto con l'ID " + input1 + " all'interno del magazzino \n");
     }
 
     public String rimuoviProdottoMagazzino(Prodotto prodotto) {

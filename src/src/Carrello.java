@@ -1,10 +1,14 @@
 package src;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Carrello {
+    private static final String URL = "jdbc:mysql://sql8.freesqldatabase.com:3306/sql8666174";
+    private static final String USER = "sql8666174";
+    private static final String PASSWORD = "pdsKu4WEkV";
     private ArrayList<Prodotto> listaCarrello;
     private final Scanner in;
 
@@ -47,21 +51,56 @@ public class Carrello {
         return costoTotale;
     }
 
-    public String aggiungiProdottoCarrello(Prodotto prodotto) {
-        this.listaCarrello.add(prodotto);
-        return "Il prodotto " + prodotto + " è stato aggiunto correttamente al carrello \n";
+    public String aggiungiProdottoCarrello(int id) {
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            if (!controllaPresenzaCarrello(id)) {
+                String q1 = "INSERT INTO `Carrello` (ProdottoId, produttore,  modello, prezzoVendita)\n" +
+                        "SELECT id, produttore, modello, prezzoVendita\n" +
+                        "FROM `Prodotto`\n" +
+                        "WHERE id = '" + id + "';";
+                s.executeUpdate(q1);
+            }else{
+                String q = "UPDATE Carrello SET quantità = quantità + 1 WHERE prodottoId = '" + id + "';";
+                s.executeUpdate(q);
+            }
+        }  catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "Il prodotto con id: " + id + " è stato aggiunto correttamente al carrello \n";
     }
 
-    public void completaAcquisto() {
-        this.listaCarrello.clear();
-    }
-    public void printCarrello (ArrayList < Prodotto > listaCarrello) {
-        listaCarrello.forEach(System.out::println);
-        System.out.println();
-    }
-    @Override
-    public String toString() {
-        return "Carrello: " +
-                "\n" + listaCarrello;
+    private boolean controllaPresenzaCarrello(int id) throws SQLException {
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            String q1 = "SELECT * FROM `Carrello` WHERE prodottoId = '" + id + "';";
+            ResultSet result = s.executeQuery(q1);
+            if (result.next()) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
     }
 }
+
+    /*
+    // Crea la query SQL
+            String sql = "SELECT * FROM Carrello WHERE id_prodotto = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, idProdottoDesiderato);
+
+            // Esegui la query
+            ResultSet resultSet = statement.executeQuery();
+
+            // Verifica se ci sono risultati
+            if (resultSet.next()) {
+                // Il prodotto è nel carrello
+                System.out.println("Il prodotto è nel carrello!");
+            } else {
+                // Il prodotto non è nel carrello
+                System.out.println("Il prodotto NON è nel carrello!");
+            }
+     */
+

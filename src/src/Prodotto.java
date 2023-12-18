@@ -168,16 +168,16 @@ public class Prodotto {
                 System.out.println("Inserisci un valore valido.");
             }
         }
-        int id;
-        while(true) {
-            try {
-                System.out.println("Scrivi l'id del prodotto che desideri registrare:");
-                id = Integer.parseInt(in.nextLine());
-                break;
-            } catch (NumberFormatException nfe) {
-                System.out.println("Inserisci un valore valido.");
-            }
-        }
+        int id = 0;
+//        while(true) {
+//            try {
+//                System.out.println("Scrivi l'id del prodotto che desideri registrare:");
+//                id = Integer.parseInt(in.nextLine());
+//                break;
+//            } catch (NumberFormatException nfe) {
+//                System.out.println("Inserisci un valore valido.");
+//            }
+//        }
         String tipoTemp = "";
         TipoProdotto tipoProdotto = TipoProdotto.NOTFUND;
         while(!tipoTemp.equalsIgnoreCase("smartphone") && !tipoTemp.equalsIgnoreCase("notebook") && !tipoTemp.equalsIgnoreCase("tablet")) {
@@ -186,8 +186,11 @@ public class Prodotto {
         }
         switch(tipoTemp.toLowerCase()) {
             case "smartphone": tipoProdotto = TipoProdotto.SMARTPHONE;
+            break;
             case "notebook": tipoProdotto = TipoProdotto.NOTEBOOK;
+            break;
             case "tablet": tipoProdotto = TipoProdotto.TABLET;
+            break;
         }
         return new Prodotto(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
     }
