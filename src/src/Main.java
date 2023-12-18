@@ -49,7 +49,14 @@ public class Main {
                     }
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-//                    aggiungiCarrelloId(in, listaMagazzino,listaCarrello);
+                    try {
+                        System.out.println("Inserisci l'ID del prodotto che desideri aggiungere al carrello");
+                        int id = in.nextInt();
+                        String inp = in.nextLine();
+                        System.out.println(carrello.aggiungiProdottoCarrello(id));
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
@@ -119,23 +126,6 @@ public class Main {
         System.out.println();
     }
 
-    private static void aggiungiCarrelloId(Scanner in, ArrayList<Prodotto> listaMagazzino, ArrayList<Prodotto> listaCarrello) {
-        boolean validoID = true;
-        System.out.println("Scrivi l'ID del prodotto che desideri aggiungere al carrello:");
-        System.out.println();
-        String input = in.nextLine();
-        System.out.println();
-        for (Prodotto prodotto : listaCarrello) {
-            if (Objects.equals(String.valueOf(prodotto.getId()), input)) {
-                listaCarrello.add(prodotto);
-                listaMagazzino.remove(prodotto);
-            }
-        }
-        if (!validoID) {
-            System.out.println("Non è presente un dispositivo con l'ID " + input + " all'interno del carrello");
-            System.out.println();
-        }
-    }
     public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
         double costoTotale = 0;
         if (!listaCarrello.isEmpty()) {

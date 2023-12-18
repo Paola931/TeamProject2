@@ -55,23 +55,11 @@ public class Carrello {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
             if (!controllaPresenzaCarrello(id)) {
-                String q1 = "INSERT INTO `Carrello` (ProdottoId, produttore,  modello, prezzoVendita,quantità)\n" +
-                        "SELECT id, produttore, modello, prezzoVendita, quantità\n" +
+                String q1 = "INSERT INTO `Carrello` (ProdottoId, produttore,  modello, prezzoVendita)\n" +
+                        "SELECT id, produttore, modello, prezzoVendita\n" +
                         "FROM `Prodotto`\n" +
-                        "WHERE prodottoId = '" + id + "';";
-                ResultSet result = s.executeQuery(q1);
-                while (result.next()) {
-                    System.out.println(
-                            "ID prodotto: " + result.getString("id") + " - " +
-                                    "Produttore: " + result.getString("produttore") + " - " +
-                                    "Modello: " + result.getString("modello") + " - " +
-                                    "Descrizione: " + result.getString("descrizione") + " - " +
-                                    "Pollici Display: " + result.getString("display") + " - " +
-                                    "GB di Memoria: " + result.getString("memoria") + " - " +
-                                    "Prezzo: " + result.getString("prezzoVendita") + " - " +
-                                    "Tipologia prodotto: " + result.getString("tipo")
-                    );
-                }
+                        "WHERE id = '" + id + "';";
+                s.executeUpdate(q1);
             }else{
                 String q = "UPDATE Carrello SET quantità = quantità + 1 WHERE prodottoId = '" + id + "';";
                 s.executeUpdate(q);
