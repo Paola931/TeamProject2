@@ -7,22 +7,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in); // inizializzo Scanner
-
-        ArrayList<Prodotto> listaCarrello = new ArrayList<>(); // creo un arraylist di prodotto per il carrello
-        Carrello carrello = new Carrello(listaCarrello, in);
-
-        ArrayList<Prodotto> listaMagazzino = new ArrayList<>(); // creo un arraylist di prodotto per il magazzino
-        Magazzino magazzino = new Magazzino(listaMagazzino, in);
-
-        // crea un prodotto
-        Prodotto sample1 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 600, 8, TipoProdotto.SMARTPHONE);
-        Prodotto sample2 = new Prodotto("Samsung", "S10", " ", 5.8, 128, 499, 800, 9, TipoProdotto.SMARTPHONE);
-        listaMagazzino.add(sample1);
-        listaCarrello.add(sample2);
+        Magazzino magazzino = new Magazzino(new ArrayList<Prodotto>(),in);
+        Carrello carrello = new Carrello(new ArrayList<Prodotto>(),in);
 
         //MENU PRINCIPALE
         String input = Integer.toString(1);
         System.out.println("Inserisci un numero per iniziare un operazione:");
+
         while (!input.equals("0")) {
             System.out.println("0 = Esci dal programma");
             System.out.println("1 = Aggiungi  un articolo al magazzino");
@@ -58,7 +49,7 @@ public class Main {
                     }
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-                    aggiungiCarrelloId(in, listaMagazzino,listaCarrello);
+//                    aggiungiCarrelloId(in, listaMagazzino,listaCarrello);
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
                     try {
@@ -70,13 +61,13 @@ public class Main {
                     }
                     break;
                 case "5": // Visualizza i dispositivi presenti nel magazzino
-                    magazzino.printMagazzino(listaMagazzino);
+//                    magazzino.printMagazzino(listaMagazzino);
                     break;
                 case "6": // Visualizza il carrello
-                    carrello.printCarrello(listaCarrello);
+//                    carrello.printCarrello(listaCarrello);
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
-                    System.out.println(calcoloCostoTotale(listaCarrello));
+//                    System.out.println(calcoloCostoTotale(listaCarrello));
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
                     System.out.println();
@@ -85,7 +76,7 @@ public class Main {
                     break;
                 case "9": //  Completa il tuo acquisto
                     System.out.println(carrello);
-                    carrello.completaAcquisto();
+//                    carrello.completaAcquisto();
                     System.out.println("Acquisto effettuato!");
                     break;
                 default:
