@@ -28,7 +28,7 @@ public class Main {
             if(ruolo == Ruolo.ADMIN || ruolo == Ruolo.DEVELOPER) {
                 MenuAdmin.main();
             } else if(ruolo == Ruolo.USER) {
-//                MenuUtente.main();
+                MenuUtente.main();
             } else {
                 System.out.println("Utente non trovato");
             }
