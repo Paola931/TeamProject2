@@ -24,16 +24,14 @@ public class Magazzino {
         this.in = in;
     }
 
-    public ArrayList<Prodotto> aggiungiAMagazzino(Prodotto prodotto) throws SQLException {
+    public ArrayList<Prodotto> aggiungiAMagazzino(Prodotto prodotto, int quantita) throws SQLException {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
             if (controllaPresenzaMagazzino(prodotto)) {
-                String q = "UPDATE Prodotto SET quantità = quantità + 1 WHERE produttore = '" + prodotto.getProducer() + "' AND modello = '" + prodotto.getModel() +
-                        "' AND descrizione = '" + prodotto.getDescription() + "'"+ /*AND display = '" + prodotto.getDisplayInch()+ "' */ " AND memoria = '" + prodotto.getMemory() + "' " +
-                        "AND prezzoAcquisto = '" + prodotto.getPriceBuy() + "' AND prezzoVendita = '" + prodotto.getPriceSell() + "' AND tipo = '" + prodotto.getTipoProdotto() + "';";
+                String q = "UPDATE Magazzino SET quantità = quantità + '" + quantita + "' WHERE IdProdotto = '" + prodotto.getId() + "';";
                 s.executeUpdate(q);
             } else {
-                String q = "INSERT INTO Prodotto (produttore, modello, descrizione, display, memoria, prezzoAcquisto, prezzoVendita, tipo) VALUES ('" + prodotto.getProducer() + "', '" + prodotto.getModel() + "', '" + prodotto.getDescription() + "', '" + prodotto.getDisplayInch() + "', '" + prodotto.getMemory() + "', '" + prodotto.getPriceBuy() + "', '" + prodotto.getPriceSell() + "', '" + prodotto.getTipoProdotto() + "');";
+                String q = "INSERT INTO Magazzino (IdProdotto,quantità) VALUES ('" + prodotto.getId() + "', '" + quantita + "');";
                 s.executeUpdate(q);
             }
             return null;

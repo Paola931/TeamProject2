@@ -68,7 +68,7 @@ public class MenuUtente {
 //                    System.out.println(calcoloCostoTotale(listaCarrello));
                     break;
                 case "7": // Visualizza il prezzo medio degli articoli presenti nel carrello
-//                    System.out.println(calcoloCostoMedio(listaCarrello));
+                   System.out.println(carrello.calcoloCostoMedio());
                     break;
             }
         }

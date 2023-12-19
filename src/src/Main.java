@@ -70,15 +70,4 @@ public class Main {
         System.out.println();
     }
 
-    public static double calcoloCostoTotale(ArrayList<Prodotto> listaCarrello) {
-        double costoTotale = 0;
-        if (!listaCarrello.isEmpty()) {
-            for (Prodotto prodotto : listaCarrello) {
-                costoTotale += prodotto.getPriceSell();
-            }
-        }else{
-            System.out.println("Il tuo carrello è vuoto");
-        }
-        return costoTotale;
-    }
 }

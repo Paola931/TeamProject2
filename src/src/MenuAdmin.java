@@ -34,7 +34,10 @@ public class MenuAdmin {
                     Prodotto p = Prodotto.creaArticolo();
                     System.out.println(p);
                     try {
-                        System.out.println(magazzino.aggiungiAMagazzino(p));
+//                        System.out.println("Inserisci la quantità di prodotti che desideri aggiungere al magazzino");
+//                        int quantita = in.nextInt();
+//                        String s = in.nextLine();
+                     //   System.out.println(magazzino.aggiungiAMagazzino(p));
                     } catch(Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -85,7 +88,7 @@ public class MenuAdmin {
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
 //                    TODO
-//                    System.out.println(calcoloCostoMedio(listaCarrello));
+                    System.out.println(carrello.calcoloCostoMedio());
                     break;
             }
         }
