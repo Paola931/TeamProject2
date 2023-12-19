@@ -15,7 +15,7 @@ public class Main {
         //LOGIN
         String email;
         do {
-            System.out.println("Scrivi la tua mail:");
+            System.out.println("Scrivi la tua email:");
             email = in.nextLine();
         } while(email.isEmpty());
         String password;
