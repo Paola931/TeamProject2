@@ -10,6 +10,8 @@ public class DBManager {
     private static final String USER = "sql8666174";
     private static final String PASSWORD = "pdsKu4WEkV";
 
+
+
     public static Statement connection() {
         try {
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -18,4 +20,5 @@ public class DBManager {
             throw new RuntimeException(e);
         }
     }
+
 }
