@@ -44,6 +44,23 @@ public class Carrello {
             throw new SQLException(e.getMessage());
         }
     }
+    public double calcoloCostoMedio() throws SQLException {
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            double sum = calcoloCostoTotale();
+            double media = 0;
+            Statement s = c.createStatement();
+            String q = "SELECT SUM(quantità) AS totaleProdotti FROM `Carrello`;";
+            ResultSet result = s.executeQuery(q);
+            while(result.next()) {
+                System.out.println(result.getInt("totaleProdotti"));
+                media = sum / result.getInt("totaleProdotti");
+            }
+            System.out.println("La media è: ");
+            return media;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
     private int controllaQuantità(int id) throws SQLException {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
