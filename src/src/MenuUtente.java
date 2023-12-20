@@ -30,11 +30,11 @@ public class MenuUtente {
                     break;
                 case "1": //Ricerca un dispositivo nel magazzino
 //                    TODO
-//                    try {
-//                        System.out.println(magazzino.ricercaDispositivo());
-//                    } catch (Exception e) {
-//                        System.out.println(e.getMessage());
-//                    }
+                    try {
+                        System.out.println(magazzino.ricercaDispositivo());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case "2": // Aggiungi elemento al carrello tramite ID
                     try {

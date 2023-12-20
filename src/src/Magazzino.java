@@ -55,7 +55,7 @@ public class Magazzino {
         }
     }
 
-    public ArrayList<Prodotto> ricercaDispositivo() throws Exception {
+    public ArrayList<String> ricercaDispositivo() throws Exception {
         System.out.println("Seleziona in che modo vuoi ricercare:");
         System.out.println("0 = esci dalla funzione di ricerca");
         System.out.println("1 = per tipo");
@@ -116,29 +116,29 @@ public class Magazzino {
                     System.out.println("3 = Notebook");
                     tipo = in.nextInt();
                 }
-                return ricercaTipo(tipo, lista);
+                //return ricercaTipo(tipo, lista);
             case "2":
                 System.out.println("Inserisci produttore:");
                 String produttore = in.nextLine();
-                return ricercaProduttore(produttore, lista);
+               // return ricercaProduttore(produttore, lista);
             case "3":
                 System.out.println("Inserisci modello:");
                 String modello = in.nextLine();
-                return ricercaModello(modello, lista);
+                return ricercaModello(modello);
             case "4":
                 System.out.println("Inserisci prezzo vendita:");
                 double prezzoVendita = in.nextDouble();
-                return ricercaPrezzoVendita(prezzoVendita, lista);
+               // return ricercaPrezzoVendita(prezzoVendita, lista);
             case "5":
                 System.out.println("Inserisci prezzo acquisto:");
                 double prezzoAcquisto = in.nextDouble();
-                return ricercaPrezzoAcquisto(prezzoAcquisto, lista);
+               // return ricercaPrezzoAcquisto(prezzoAcquisto, lista);
             case "6":
                 System.out.print("Inserisci il prezzo minimo (es.5,00) :");
                 double prezzoMin = in.nextDouble();
                 System.out.print("Inserisci il prezzo massimo (es.50,00) :");
                 double prezzoMax = in.nextDouble();
-                return ricercaRangePrezzo(prezzoMin, prezzoMax, lista);
+              //  return ricercaRangePrezzo(prezzoMin, prezzoMax, lista);
         }
         throw new Exception("Something went wrong!");
     }
@@ -224,12 +224,27 @@ public class Magazzino {
         }
     }
 
-    public static ArrayList<Prodotto> ricercaModello(String modello, ArrayList<Prodotto> lista) {
-        ArrayList<Prodotto> list = new ArrayList<>();
-        for (Prodotto prodotto : lista) {
-            if (prodotto.getModel().equals(modello)) {
+    public static ArrayList<String> ricercaModello(String modello) {
+        ArrayList<String> list = new ArrayList<>();
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            String q1 = "SELECT * FROM `Prodotto` WHERE modello = '" + modello + "';";
+            s.executeQuery(q1);
+
+            ResultSet result = s.executeQuery(q1);
+            while (result.next()) {
+                String prodotto = "ID prodotto: " + result.getString("id") + " - " +
+                        "Produttore: " + result.getString("produttore") + " - " +
+                        "Modello: " + result.getString("modello") + " - " +
+                        "Descrizione: " + result.getString("descrizione") + " - " +
+                        "Pollici Display: " + result.getString("display") + " - " +
+                        "GB di Memoria: " + result.getString("memoria") + " - " +
+                        "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                        "Tipologia prodotto: " + result.getString("tipo") ;
                 list.add(prodotto);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return list;
     }
