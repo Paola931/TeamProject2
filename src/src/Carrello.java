@@ -81,8 +81,8 @@ public class Carrello {
                 String q = "UPDATE Carrello SET quantità = quantità + 1 WHERE prodottoId = '" + id + "';";
                 s.executeUpdate(q);
             }else{
-                String q1 = "INSERT INTO `Carrello` (ProdottoId, produttore,  modello, prezzoVendita)\n" +
-                        "SELECT id, produttore, modello, prezzoVendita\n" +
+                String q1 = "INSERT INTO `Carrello` (prodottoId, quantità)\n" +
+                        "SELECT id\n" +
                         "FROM `Prodotto`\n" +
                         "WHERE id = '" + id + "';";
                 s.executeUpdate(q1);
