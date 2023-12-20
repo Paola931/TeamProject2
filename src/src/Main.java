@@ -132,38 +132,4 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-
-    public static void ricercaPrezzoVendita(Scanner in, ArrayList<Prodotto> listaMagazzino) {
-        boolean bool = true;
-        System.out.println("Scrivi il prezzo di vendita che vuoi ricercare:");
-        System.out.println();
-        String input = in.nextLine();
-        while (true) {
-            try {
-                Integer.parseInt(input);
-                break;
-            } catch (NumberFormatException nfe) {
-                System.out.println();
-                System.out.println("Valore non supportato: " + input);
-                System.out.println();
-                System.out.println("Scrivi il prezzo di vendita che vuoi ricercare:");
-                System.out.println();
-                input = in.nextLine();
-            }
-        }
-        System.out.println();
-        System.out.println("Ecco gli elementi trovati nel magazzino corrispondenti ai tuoi parametri di ricerca:");
-        System.out.println();
-        for (Prodotto prodotto : listaMagazzino) {
-            if (prodotto.getPriceSell() == Integer.parseInt(input)) {
-                bool = false;
-                System.out.println(prodotto);
-            }
-        }
-        if (bool) {
-            System.out.println("Non sono stati trovati risultati.");
-        }
-        System.out.println();
-    }
-
 }
