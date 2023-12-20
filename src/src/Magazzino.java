@@ -115,8 +115,9 @@ public class Magazzino {
                     System.out.println("2 = Tablet");
                     System.out.println("3 = Notebook");
                     tipo = in.nextInt();
+                    String i = in.nextLine();
                 }
-                //return ricercaTipo(tipo, lista);
+                return ricercaTipo(tipo);
             case "2":
                 System.out.println("Inserisci produttore:");
                 String produttore = in.nextLine();
@@ -140,11 +141,11 @@ public class Magazzino {
                 double prezzoMax = in.nextDouble();
                 return ricercaRangePrezzo(prezzoMin, prezzoMax);
         }
-        throw new Exception("Something went wrong!");
+        throw new Exception("Qualcosa è andato storto!");
     }
 
-    public static ArrayList<Prodotto> ricercaTipo(int tipo, ArrayList<Prodotto> lista) {
-        ArrayList<Prodotto> list = new ArrayList<>();
+    public static ArrayList<String> ricercaTipo(int tipo) throws Exception {
+        ArrayList<String> list = new ArrayList<>();
         switch (tipo) {
             case 0:
                 System.out.println("Stai per tornare al menù precedente");
@@ -155,8 +156,17 @@ public class Magazzino {
                     Statement s = c.createStatement();
                     String q1 = "SELECT * FROM `Prodotto` WHERE tipo = 'SMARTPHONE';";
                     s.executeQuery(q1);
-                    for (Prodotto prodotto : lista) {
-                        System.out.println(prodotto);
+                    ResultSet result = s.executeQuery(q1);
+                    while (result.next()) {
+                        String prodotto = "ID prodotto: " + result.getString("id") + " - " +
+                                "Produttore: " + result.getString("produttore") + " - " +
+                                "Modello: " + result.getString("modello") + " - " +
+                                "Descrizione: " + result.getString("descrizione") + " - " +
+                                "Pollici Display: " + result.getString("display") + " - " +
+                                "GB di Memoria: " + result.getString("memoria") + " - " +
+                                "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                                "Tipologia prodotto: " + result.getString("tipo");
+                        list.add(prodotto);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -168,8 +178,17 @@ public class Magazzino {
                     Statement s = c.createStatement();
                     String q1 = "SELECT * FROM `Prodotto` WHERE tipo = 'TABLET';";
                     s.executeQuery(q1);
-                    for (Prodotto prodotto : lista) {
-                        System.out.println(prodotto);
+                    ResultSet result = s.executeQuery(q1);
+                    while (result.next()) {
+                        String prodotto = "ID prodotto: " + result.getString("id") + " - " +
+                                "Produttore: " + result.getString("produttore") + " - " +
+                                "Modello: " + result.getString("modello") + " - " +
+                                "Descrizione: " + result.getString("descrizione") + " - " +
+                                "Pollici Display: " + result.getString("display") + " - " +
+                                "GB di Memoria: " + result.getString("memoria") + " - " +
+                                "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                                "Tipologia prodotto: " + result.getString("tipo");
+                        list.add(prodotto);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -181,15 +200,28 @@ public class Magazzino {
                     Statement s = c.createStatement();
                     String q1 = "SELECT * FROM `Prodotto` WHERE tipo = 'NOTEBOOK';";
                     s.executeQuery(q1);
-                    for (Prodotto prodotto : lista) {
-                        System.out.println(prodotto);
+                    ResultSet result = s.executeQuery(q1);
+                    while (result.next()) {
+                        String prodotto = "ID prodotto: " + result.getString("id") + " - " +
+                                "Produttore: " + result.getString("produttore") + " - " +
+                                "Modello: " + result.getString("modello") + " - " +
+                                "Descrizione: " + result.getString("descrizione") + " - " +
+                                "Pollici Display: " + result.getString("display") + " - " +
+                                "GB di Memoria: " + result.getString("memoria") + " - " +
+                                "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                                "Tipologia prodotto: " + result.getString("tipo");
+                        list.add(prodotto);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 break;
         }
-        return list;
+        if (!list.isEmpty()) {
+            return list;
+        } else {
+            throw new Exception("Non sono stati trovati risultati con i parametri di ricerca inseriti");
+        }
 
     }
 
