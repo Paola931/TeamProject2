@@ -120,7 +120,7 @@ public class Magazzino {
             case "2":
                 System.out.println("Inserisci produttore:");
                 String produttore = in.nextLine();
-                // return ricercaProduttore(produttore, lista);
+                 return ricercaProduttore(produttore);
             case "3":
                 System.out.println("Inserisci modello:");
                 String modello = in.nextLine();
@@ -193,8 +193,8 @@ public class Magazzino {
 
     }
 
-    public static ArrayList<Prodotto> ricercaProduttore(String produttore, ArrayList<Prodotto> lista) throws Exception {
-        ArrayList<Prodotto> list = new ArrayList<>();
+    public static ArrayList<String> ricercaProduttore(String produttore) throws Exception {
+        ArrayList<String> list = new ArrayList<>();
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
             String q1 = "SELECT * FROM `Prodotto` WHERE produttore = '" + produttore + "';";
@@ -202,29 +202,28 @@ public class Magazzino {
 
             ResultSet result = s.executeQuery(q1);
             while (result.next()) {
-                System.out.println(
-                        "ID prodotto: " + result.getString("id") + " - " +
-                                "Produttore: " + result.getString("produttore") + " - " +
-                                "Modello: " + result.getString("modello") + " - " +
-                                "Descrizione: " + result.getString("descrizione") + " - " +
-                                "Pollici Display: " + result.getString("display") + " - " +
-                                "GB di Memoria: " + result.getString("memoria") + " - " +
-                                "Prezzo: " + result.getString("prezzoVendita") + " - " +
-                                "Tipologia prodotto: " + result.getString("tipo")
-                );
+                String prodotto = "ID prodotto: " + result.getString("id") + " - " +
+                        "Produttore: " + result.getString("produttore") + " - " +
+                        "Modello: " + result.getString("modello") + " - " +
+                        "Descrizione: " + result.getString("descrizione") + " - " +
+                        "Pollici Display: " + result.getString("display") + " - " +
+                        "GB di Memoria: " + result.getString("memoria") + " - " +
+                        "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                        "Tipologia prodotto: " + result.getString("tipo");
+                list.add(prodotto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println(list);
         if (!list.isEmpty()) {
-            return null; //list;
+            return list;
         } else {
             throw new Exception("Non sono stati trovati risultati con i parametri di ricerca inseriti");
         }
     }
 
-    public static ArrayList<String> ricercaModello(String modello) {
+    public static ArrayList<String> ricercaModello(String modello) throws Exception {
         ArrayList<String> list = new ArrayList<>();
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
@@ -246,7 +245,11 @@ public class Magazzino {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return list;
+        if (!list.isEmpty()) {
+            return list;
+        } else {
+            throw new Exception("Non sono stati trovati risultati con i parametri di ricerca inseriti");
+        }
     }
 
     public static ArrayList<String> ricercaPrezzoVendita(double prezzoVendita) throws Exception {
