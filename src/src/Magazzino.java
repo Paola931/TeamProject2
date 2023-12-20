@@ -132,7 +132,7 @@ public class Magazzino {
             case "5":
                 System.out.println("Inserisci prezzo acquisto:");
                 double prezzoAcquisto = in.nextDouble();
-               // return ricercaPrezzoAcquisto(prezzoAcquisto, lista);
+                return ricercaPrezzoAcquisto(prezzoAcquisto);
             case "6":
                 System.out.print("Inserisci il prezzo minimo (es.5,00) :");
                 double prezzoMin = in.nextDouble();
@@ -275,17 +275,37 @@ public class Magazzino {
             return list;
         }else{
             throw new Exception("Non è stato trovato alcun prodotto con il valore di ricerca inserito, la invitiamo a riprovare");
+
         }
     }
 
-    public static ArrayList<Prodotto> ricercaPrezzoAcquisto(double prezzoAcquisto, ArrayList<Prodotto> lista) {
-        ArrayList<Prodotto> list = new ArrayList<>();
-        for (Prodotto prodotto : lista) {
-            if (prodotto.getPriceBuy() == prezzoAcquisto) {
+    public static ArrayList<String> ricercaPrezzoAcquisto(double prezzoAcquisto) throws Exception {
+        ArrayList<String> list = new ArrayList<>();
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            String q1 = "SELECT * FROM `Prodotto` WHERE prezzoAcquisto = '" + prezzoAcquisto + "';";
+            s.executeQuery(q1);
+
+            ResultSet result = s.executeQuery(q1);
+            while (result.next()) {
+                String prodotto = "ID prodotto: " + result.getString("id") + " - " +
+                        "Produttore: " + result.getString("produttore") + " - " +
+                        "Modello: " + result.getString("modello") + " - " +
+                        "Descrizione: " + result.getString("descrizione") + " - " +
+                        "Pollici Display: " + result.getString("display") + " - " +
+                        "GB di Memoria: " + result.getString("memoria") + " - " +
+                        "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                        "Tipologia prodotto: " + result.getString("tipo") ;
                 list.add(prodotto);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return list;
+        if(!list.isEmpty()){
+            return list;
+        }else{
+            throw new Exception("Non è stato trovato alcun prodotto con il valore di ricerca inserito, la invitiamo a riprovare");
+        }
     }
 
     public static ArrayList<Prodotto> ricercaRangePrezzo(double prezzoMin, double prezzoMax, ArrayList<Prodotto> lista) {
