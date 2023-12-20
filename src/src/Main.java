@@ -17,7 +17,7 @@ public class Main {
         // inizializzo variabili
         Scanner in = new Scanner(System.in);
         Login login = new Login();
-        Magazzino magazzino = new Magazzino(new ArrayList<Prodotto>(), in);
+        //Magazzino magazzino = new Magazzino(new ArrayList<Prodotto>(), in);
         Carrello carrello = new Carrello(new ArrayList<Prodotto>(), in);
 
 
@@ -26,15 +26,18 @@ public class Main {
         do{
             System.out.println("Hai già un account o desideri registrarti? \n" +
                     "-Accedi  per passare al LOGIN \n" +
-                    "-Registrati  per passare alla REGISTRAZIONE");
+                    "-Registrati  per passare alla REGISTRAZIONE \n" +
+                    "-Esci per uscire dal programma");
              YoN = in.nextLine();
-        }while(!Objects.equals(YoN, "accedi") && !Objects.equals(YoN, "registrati"));
+        }while(!Objects.equals(YoN, "accedi") && !Objects.equals(YoN, "registrati") && !Objects.equals(YoN, "esci"));
         switch (YoN.toLowerCase()) {
             case "accedi":
                 startLogin();
                 break;
             case "registrati":
                 startSignUp();
+                break;
+            case "esci":
                 break;
         }
 

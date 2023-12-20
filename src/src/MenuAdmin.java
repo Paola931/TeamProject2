@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuAdmin {
+    private static Ruolo ruolo;
     public static void main() throws SQLException {
         Scanner in = new Scanner(System.in); // inizializzo Scanner
         Magazzino magazzino = new Magazzino(new ArrayList<>(),in);
@@ -43,15 +44,13 @@ public class MenuAdmin {
                     }
                     break;
                 case "2": //Ricerca un dispositivo nel magazzino
-//                    TODO
                     try {
-                        System.out.println(magazzino.ricercaDispositivo());
+                        System.out.println(magazzino.ricercaDispositivoAdmin());
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case "3": // Aggiungi elemento al carrello tramite ID
-//                    TODO: DONE
                     try {
                         System.out.println("Inserisci l'ID del prodotto che desideri aggiungere al carrello");
                         int id = in.nextInt();
@@ -63,7 +62,6 @@ public class MenuAdmin {
                     }
                     break;
                 case "4": // Rimuovi elemento dal carrello tramite ID
-//                    TODO: DONE
                     try {
                         System.out.println("Inserisci l'ID del prodotto che desideri rimuovere dal carrello");
                         int id = in.nextInt();
@@ -83,11 +81,9 @@ public class MenuAdmin {
                    carrello.visualizza();
                     break;
                 case "7": // Visualizza il prezzo totale degli articoli presenti nel carrello
-//                    TODO
                     System.out.println(carrello.calcoloCostoTotale());
                     break;
                 case "8": // Visualizza il prezzo medio degli articoli presenti nel carrello
-//                    TODO
                     System.out.println(carrello.calcoloCostoMedio());
                     break;
             }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuUtente {
+    private static Ruolo ruolo;
     public static void main() throws Exception{
         Scanner in = new Scanner(System.in); // inizializzo Scanner
         Magazzino magazzino = new Magazzino(new ArrayList<>(),in);
@@ -31,7 +32,7 @@ public class MenuUtente {
                 case "1": //Ricerca un dispositivo nel magazzino
 //                    TODO
                     try {
-                        System.out.println(magazzino.ricercaDispositivo());
+                        System.out.println(magazzino.ricercaDispositivoAcquirente());
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -65,7 +66,7 @@ public class MenuUtente {
                     carrello.visualizza();
                     break;
                 case "6": // Visualizza il prezzo totale degli articoli presenti nel carrello
-//                    System.out.println(calcoloCostoTotale(listaCarrello));
+                    System.out.println(carrello.calcoloCostoTotale());
                     break;
                 case "7": // Visualizza il prezzo medio degli articoli presenti nel carrello
                    System.out.println(carrello.calcoloCostoMedio());

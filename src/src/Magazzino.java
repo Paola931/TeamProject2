@@ -2,6 +2,7 @@ package src;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Magazzino {
@@ -55,15 +56,102 @@ public class Magazzino {
         }
     }
 
-    public ArrayList<String> ricercaDispositivo() throws Exception {
+    public ArrayList<String> ricercaDispositivoAdmin() throws Exception {
+            System.out.println("Seleziona in che modo vuoi ricercare:");
+            System.out.println("0 = esci dalla funzione di ricerca");
+            System.out.println("1 = per tipo");
+            System.out.println("2 = per produttore");
+            System.out.println("3 = per modello");
+            System.out.println("4 = per prezzo di vendita");
+            System.out.println("5 = per prezzo di acquisto");
+            System.out.println("6 = ricerca specifica per range di prezzo");
+            System.out.println();
+            String input = in.nextLine();
+            while (true) {
+                try {
+                    int inputInt = Integer.parseInt(input);
+                    if (inputInt >= 0 && inputInt <= 6) {
+                        break;
+                    }
+                    System.out.println();
+                    System.out.println("Valore non supportato: " + input);
+                    System.out.println();
+                    System.out.println("Seleziona in che modo vuoi ricercare:");
+                    System.out.println("0 = esci dalla funzione di ricerca");
+                    System.out.println("1 = per tipo");
+                    System.out.println("2 = per produttore");
+                    System.out.println("3 = per modello");
+                    System.out.println("4 = per prezzo di vendita");
+                    System.out.println("5 = per prezzo di acquisto");
+                    System.out.println("6 = ricerca specifica per range di prezzo");
+                    System.out.println();
+                    input = in.nextLine();
+                } catch (NumberFormatException nfe) {
+                    System.out.println();
+                    System.out.println("Valore non supportato: " + input);
+                    System.out.println();
+                    System.out.println("Seleziona in che modo vuoi ricercare:");
+                    System.out.println("0 = esci dalla funzione di ricerca");
+                    System.out.println("1 = per tipo");
+                    System.out.println("2 = per produttore");
+                    System.out.println("3 = per modello");
+                    System.out.println("4 = per prezzo di vendita");
+                    System.out.println("5 = per prezzo di acquisto");
+                    System.out.println("6 = ricerca specifica per range di prezzo");
+                    System.out.println();
+                    input = in.nextLine();
+                }
+            }
+            System.out.println();
+            switch (input) {
+                case "0":
+                    throw new Exception("Grazie per averci scelto, arrivederci!");
+                case "1":
+                    int tipo = -1;
+                    while (tipo < 0 || tipo > 3) {
+                        System.out.println("Inserisci il numero corrispondente al tipo di dispositivo che vuoi ricercare:");
+                        System.out.println("0 = Torna al menù precendente");
+                        System.out.println("1 = Smartphone");
+                        System.out.println("2 = Tablet");
+                        System.out.println("3 = Notebook");
+                        tipo = in.nextInt();
+                        String i = in.nextLine();
+                    }
+                    return ricercaTipo(tipo);
+                case "2":
+                    System.out.println("Inserisci produttore:");
+                    String produttore = in.nextLine();
+                    return ricercaProduttore(produttore);
+                case "3":
+                    System.out.println("Inserisci modello:");
+                    String modello = in.nextLine();
+                    return ricercaModello(modello);
+                case "4":
+                    System.out.println("Inserisci prezzo vendita:");
+                    double prezzoVendita = in.nextDouble();
+                    return ricercaPrezzoVendita(prezzoVendita);
+                case "5":
+                    System.out.println("Inserisci prezzo acquisto:");
+                    double prezzoAcquisto = in.nextDouble();
+                    return ricercaPrezzoAcquisto(prezzoAcquisto);
+                case "6":
+                    System.out.print("Inserisci il prezzo minimo (es.5,00) :");
+                    double prezzoMin = in.nextDouble();
+                    System.out.print("Inserisci il prezzo massimo (es.50,00) :");
+                    double prezzoMax = in.nextDouble();
+                    return ricercaRangePrezzo(prezzoMin, prezzoMax);
+                default:
+                    throw new Exception("Qualcosa è andato storto!");
+            }
+    }
+    public ArrayList<String> ricercaDispositivoAcquirente() throws Exception {
         System.out.println("Seleziona in che modo vuoi ricercare:");
         System.out.println("0 = esci dalla funzione di ricerca");
         System.out.println("1 = per tipo");
         System.out.println("2 = per produttore");
         System.out.println("3 = per modello");
         System.out.println("4 = per prezzo di vendita");
-        System.out.println("5 = per prezzo di acquisto");
-        System.out.println("6 = ricerca specifica per range di prezzo");
+        System.out.println("5 = ricerca specifica per range di prezzo");
         System.out.println();
         String input = in.nextLine();
         while (true) {
@@ -81,8 +169,7 @@ public class Magazzino {
                 System.out.println("2 = per produttore");
                 System.out.println("3 = per modello");
                 System.out.println("4 = per prezzo di vendita");
-                System.out.println("5 = per prezzo di acquisto");
-                System.out.println("6 = ricerca specifica per range di prezzo");
+                System.out.println("5 = ricerca specifica per range di prezzo");
                 System.out.println();
                 input = in.nextLine();
             } catch (NumberFormatException nfe) {
@@ -95,8 +182,7 @@ public class Magazzino {
                 System.out.println("2 = per produttore");
                 System.out.println("3 = per modello");
                 System.out.println("4 = per prezzo di vendita");
-                System.out.println("5 = per prezzo di acquisto");
-                System.out.println("6 = ricerca specifica per range di prezzo");
+                System.out.println("5 = ricerca specifica per range di prezzo");
                 System.out.println();
                 input = in.nextLine();
             }
@@ -104,8 +190,7 @@ public class Magazzino {
         System.out.println();
         switch (input) {
             case "0":
-                System.out.println("Grazie per averci scelto, arrivederci!");
-                break;
+                throw new Exception("Grazie per averci scelto, arrivederci!");
             case "1":
                 int tipo = -1;
                 while (tipo < 0 || tipo > 3) {
@@ -121,7 +206,7 @@ public class Magazzino {
             case "2":
                 System.out.println("Inserisci produttore:");
                 String produttore = in.nextLine();
-                 return ricercaProduttore(produttore);
+                return ricercaProduttore(produttore);
             case "3":
                 System.out.println("Inserisci modello:");
                 String modello = in.nextLine();
@@ -131,17 +216,14 @@ public class Magazzino {
                 double prezzoVendita = in.nextDouble();
                 return ricercaPrezzoVendita(prezzoVendita);
             case "5":
-                System.out.println("Inserisci prezzo acquisto:");
-                double prezzoAcquisto = in.nextDouble();
-                return ricercaPrezzoAcquisto(prezzoAcquisto);
-            case "6":
                 System.out.print("Inserisci il prezzo minimo (es.5,00) :");
                 double prezzoMin = in.nextDouble();
                 System.out.print("Inserisci il prezzo massimo (es.50,00) :");
                 double prezzoMax = in.nextDouble();
                 return ricercaRangePrezzo(prezzoMin, prezzoMax);
+            default:
+                throw new Exception("Qualcosa è andato storto!");
         }
-        throw new Exception("Qualcosa è andato storto!");
     }
 
     public static ArrayList<String> ricercaTipo(int tipo) throws Exception {
