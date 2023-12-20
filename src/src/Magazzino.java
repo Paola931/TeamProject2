@@ -44,7 +44,7 @@ public class Magazzino {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
             String q1 = "SELECT * FROM `Magazzino` WHERE produttore = '" + prodotto.getProducer() + "' AND modello = '" + prodotto.getModel() + "' AND descrizione = '" + prodotto.getDescription() + "' " +
-                     /*AND display = '" + prodotto.getDisplayInch()+ "'*/ " AND memoria = '" + prodotto.getMemory() + "' AND prezzoAcquisto = '" + prodotto.getPriceBuy() + "' AND prezzoVendita = '" + prodotto.getPriceSell() + "' AND tipo = '" + prodotto.getTipoProdotto() + "';";
+                    /*AND display = '" + prodotto.getDisplayInch()+ "'*/ " AND memoria = '" + prodotto.getMemory() + "' AND prezzoAcquisto = '" + prodotto.getPriceBuy() + "' AND prezzoVendita = '" + prodotto.getPriceSell() + "' AND tipo = '" + prodotto.getTipoProdotto() + "';";
             ResultSet result = s.executeQuery(q1);
             if (result.next()) {
                 return true;
@@ -120,7 +120,7 @@ public class Magazzino {
             case "2":
                 System.out.println("Inserisci produttore:");
                 String produttore = in.nextLine();
-               // return ricercaProduttore(produttore, lista);
+                // return ricercaProduttore(produttore, lista);
             case "3":
                 System.out.println("Inserisci modello:");
                 String modello = in.nextLine();
@@ -138,7 +138,7 @@ public class Magazzino {
                 double prezzoMin = in.nextDouble();
                 System.out.print("Inserisci il prezzo massimo (es.50,00) :");
                 double prezzoMax = in.nextDouble();
-              //  return ricercaRangePrezzo(prezzoMin, prezzoMax, lista);
+                return ricercaRangePrezzo(prezzoMin, prezzoMax);
         }
         throw new Exception("Something went wrong!");
     }
@@ -240,7 +240,7 @@ public class Magazzino {
                         "Pollici Display: " + result.getString("display") + " - " +
                         "GB di Memoria: " + result.getString("memoria") + " - " +
                         "Prezzo: " + result.getString("prezzoVendita") + " - " +
-                        "Tipologia prodotto: " + result.getString("tipo") ;
+                        "Tipologia prodotto: " + result.getString("tipo");
                 list.add(prodotto);
             }
         } catch (SQLException e) {
@@ -265,15 +265,15 @@ public class Magazzino {
                         "Pollici Display: " + result.getString("display") + " - " +
                         "GB di Memoria: " + result.getString("memoria") + " - " +
                         "Prezzo: " + result.getString("prezzoVendita") + " - " +
-                        "Tipologia prodotto: " + result.getString("tipo") ;
+                        "Tipologia prodotto: " + result.getString("tipo");
                 list.add(prodotto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(!list.isEmpty()){
+        if (!list.isEmpty()) {
             return list;
-        }else{
+        } else {
             throw new Exception("Non è stato trovato alcun prodotto con il valore di ricerca inserito, la invitiamo a riprovare");
 
         }
@@ -295,21 +295,21 @@ public class Magazzino {
                         "Pollici Display: " + result.getString("display") + " - " +
                         "GB di Memoria: " + result.getString("memoria") + " - " +
                         "Prezzo: " + result.getString("prezzoVendita") + " - " +
-                        "Tipologia prodotto: " + result.getString("tipo") ;
+                        "Tipologia prodotto: " + result.getString("tipo");
                 list.add(prodotto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(!list.isEmpty()){
+        if (!list.isEmpty()) {
             return list;
-        }else{
+        } else {
             throw new Exception("Non è stato trovato alcun prodotto con il valore di ricerca inserito, la invitiamo a riprovare");
         }
     }
 
-    public static ArrayList<Prodotto> ricercaRangePrezzo(double prezzoMin, double prezzoMax, ArrayList<Prodotto> lista) {
-        ArrayList<Prodotto> list = new ArrayList<>();
+    public static ArrayList<String> ricercaRangePrezzo(double prezzoMin, double prezzoMax) throws Exception {
+        ArrayList<String> list = new ArrayList<>();
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
             String q1 = "SELECT * FROM `Prodotto` WHERE prezzoVendita BETWEEN '" + prezzoMin + "' AND '" + prezzoMax + "';";
@@ -317,21 +317,24 @@ public class Magazzino {
 
             ResultSet result = s.executeQuery(q1);
             while (result.next()) {
-                System.out.println(
-                        "ID prodotto: " + result.getString("id") + " - " +
-                                "Produttore: " + result.getString("produttore") + " - " +
-                                "Modello: " + result.getString("modello") + " - " +
-                                "Descrizione: " + result.getString("descrizione") + " - " +
-                                "Pollici Display: " + result.getString("display") + " - " +
-                                "GB di Memoria: " + result.getString("memoria") + " - " +
-                                "Prezzo: " + result.getString("prezzoVendita") + " - " +
-                                "Tipologia prodotto: " + result.getString("tipo")
-                );
+                String prodotto = "ID prodotto: " + result.getString("id") + " - " +
+                        "Produttore: " + result.getString("produttore") + " - " +
+                        "Modello: " + result.getString("modello") + " - " +
+                        "Descrizione: " + result.getString("descrizione") + " - " +
+                        "Pollici Display: " + result.getString("display") + " - " +
+                        "GB di Memoria: " + result.getString("memoria") + " - " +
+                        "Prezzo: " + result.getString("prezzoVendita") + " - " +
+                        "Tipologia prodotto: " + result.getString("tipo");
+                list.add(prodotto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return list;
+        if (!list.isEmpty()) {
+            return list;
+        } else {
+            throw new Exception("Non è stato trovato alcun prodotto con il valore di ricerca inserito, la invitiamo a riprovare");
+        }
     }
 
     @Override
@@ -340,6 +343,7 @@ public class Magazzino {
                 "listaMagazzino=" + lista +
                 '}';
     }
+
     public int controllaQuantità(int id) throws SQLException {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
@@ -367,24 +371,25 @@ public class Magazzino {
                         "WHERE id = '" + id + "';";
                 s.executeUpdate(q);
             }
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return "Il prodotto con id: " + id + " è stato aggiunto correttamente al magazzino\n";
     }
+
     public String rimuoviProdotto(int id) {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
             if (controllaQuantità(id) > 1) {
                 String q = "UPDATE Magazzino SET quantità = quantità - 1 WHERE prodottoId = '" + id + "';";
                 s.executeUpdate(q);
-            }else if (controllaQuantità(id) == 1){
+            } else if (controllaQuantità(id) == 1) {
                 String q = "DELETE FROM `Magazzino`" + " WHERE prodottoId = '" + id + "';";
                 s.executeUpdate(q);
             } else {
                 throw new Exception("Prodotto non disponibile nel magazzino");
             }
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return "Il prodotto con id: " + id + " è stato rimosso correttamente dal magazzino\n";
@@ -396,13 +401,13 @@ public class Magazzino {
             Statement s1 = c.createStatement();
             String q = "SELECT * FROM `Magazzino`;";
             ResultSet result = s.executeQuery(q);
-            while(result.next()) {
+            while (result.next()) {
                 String q1 = "SELECT * FROM Prodotto" + " WHERE id = '" + result.getInt("prodottoId") + "';";
                 ResultSet result1 = s1.executeQuery(q1);
                 result1.next();
                 System.out.println("Id: " + result1.getInt("id") + ", Produttore: " + result1.getString("produttore") + ", Modello: " + result1.getString("modello") + ", Descrizione: " + result1.getString("descrizione") + ", Display: " + result1.getFloat("display") + ", Memoria: " + result1.getInt("memoria") + ", Prezzo: " + result1.getFloat("prezzoVendita") + ", Tipo: " + TipoProdotto.valueOf(result1.getString("tipo")) + ", Quantità: " + result.getInt("quantità"));
             }
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
