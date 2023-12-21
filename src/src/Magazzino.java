@@ -28,10 +28,10 @@ public class Magazzino {
     public ArrayList<Prodotto> aggiungiAMagazzino(Prodotto prodotto, int quantita) throws SQLException {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
-            if (controllaPresenzaMagazzino(prodotto)) {
+            if (controllaPresenzaMagazzino(prodotto) && quantita > 0) {
                 String q = "UPDATE Magazzino SET quantità = quantità + '" + quantita + "' WHERE prodottoId = '" + prodotto.getId() + "';";
                 s.executeUpdate(q);
-            } else {
+            } else if (quantita > 0){
                 String q = "INSERT INTO Magazzino (prodottoId, quantità) VALUES ('" + prodotto.getId() + "','" + quantita + "');";
                 s.executeUpdate(q);
             }
