@@ -29,10 +29,10 @@ public class Magazzino {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
             if (controllaPresenzaMagazzino(prodotto)) {
-                String q = "UPDATE Magazzino SET quantità = quantità + '" + quantita + "' WHERE IdProdotto = '" + prodotto.getId() + "';";
+                String q = "UPDATE Magazzino SET quantità = quantità + '" + quantita + "' WHERE prodottoId = '" + prodotto.getId() + "';";
                 s.executeUpdate(q);
             } else {
-                String q = "INSERT INTO Magazzino (IdProdotto,quantità) VALUES ('" + prodotto.getId() + "', '" + quantita + "');";
+                String q = "INSERT INTO Magazzino (prodottoId, quantità) VALUES (0, '" + quantita + "');";
                 s.executeUpdate(q);
             }
             return null;
@@ -44,8 +44,7 @@ public class Magazzino {
     private boolean controllaPresenzaMagazzino(Prodotto prodotto) throws SQLException {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
-            String q1 = "SELECT * FROM `Magazzino` WHERE produttore = '" + prodotto.getProducer() + "' AND modello = '" + prodotto.getModel() + "' AND descrizione = '" + prodotto.getDescription() + "' " +
-                    /*AND display = '" + prodotto.getDisplayInch()+ "'*/ " AND memoria = '" + prodotto.getMemory() + "' AND prezzoAcquisto = '" + prodotto.getPriceBuy() + "' AND prezzoVendita = '" + prodotto.getPriceSell() + "' AND tipo = '" + prodotto.getTipoProdotto() + "';";
+            String q1 = "SELECT * FROM `Magazzino` WHERE id = '" + prodotto.getId() + "';";
             ResultSet result = s.executeQuery(q1);
             if (result.next()) {
                 return true;
