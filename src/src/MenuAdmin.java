@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class MenuAdmin {
     private static Ruolo ruolo;
-    public static void main() throws SQLException {
+    public static void main() throws Exception {
         Scanner in = new Scanner(System.in); // inizializzo Scanner
         Magazzino magazzino = new Magazzino(new ArrayList<>(),in);
         Carrello carrello = new Carrello(new ArrayList<>(),in);

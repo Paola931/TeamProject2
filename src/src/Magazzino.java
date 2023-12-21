@@ -32,7 +32,7 @@ public class Magazzino {
                 String q = "UPDATE Magazzino SET quantità = quantità + '" + quantita + "' WHERE prodottoId = '" + prodotto.getId() + "';";
                 s.executeUpdate(q);
             } else {
-                String q = "INSERT INTO Magazzino (prodottoId, quantità) VALUES (0, '" + quantita + "');";
+                String q = "INSERT INTO Magazzino (prodottoId, quantità) VALUES ('" + prodotto.getId() + "','" + quantita + "');";
                 s.executeUpdate(q);
             }
             return null;
@@ -44,12 +44,9 @@ public class Magazzino {
     private boolean controllaPresenzaMagazzino(Prodotto prodotto) throws SQLException {
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement s = c.createStatement();
-            String q1 = "SELECT * FROM `Magazzino` WHERE id = '" + prodotto.getId() + "';";
+            String q1 = "SELECT * FROM `Magazzino` WHERE prodottoId = '" + prodotto.getId() + "';";
             ResultSet result = s.executeQuery(q1);
-            if (result.next()) {
-                return true;
-            }
-            return false;
+            return result.next();
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }

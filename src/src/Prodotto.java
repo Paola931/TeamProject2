@@ -114,7 +114,7 @@ public class Prodotto {
         return "Il Prodotto è marca " + getProducer() + ", Modello: " + getModel() + ", Misura display: " + getDisplayInch() + " Pollici, con una memoria di: " + getMemory() + "Gb. Prezzo di acquisto: " + getPriceBuy() + ", prezzo di vendita: " + getPriceSell() + ", ID dispositivo: " + getId();
     }
 
-    public static Prodotto creaArticolo() throws SQLException {
+    public static Prodotto creaArticolo() throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.println("Scrivi la marca del prodotto che desideri registrare:");
         String producer = in.nextLine();
@@ -190,14 +190,44 @@ public class Prodotto {
                 tipoProdotto = TipoProdotto.TABLET;
                 break;
         }
+        Prodotto prodotto = new Prodotto(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
         try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            Statement s = c.createStatement();
-            String q = "INSERT INTO `Prodotto` (produttore, modello, descrizione, display, memoria, prezzoAcquisto, prezzoVendita, tipo) VALUES" +
-                    "('" + producer + "', '" + model + "', '" + description + "', '" + displayInch + "', '" + memory + "', '" + priceBuy + "', '" + priceSell + "', '" + tipoTemp + "');";
-            s.executeUpdate(q);
+            if(!controllaPresenza(prodotto)) {
+                Statement s = c.createStatement();
+                String q = "INSERT INTO `Prodotto` (produttore, modello, descrizione, display, memoria, prezzoAcquisto, prezzoVendita, tipo) VALUES" +
+                        "('" + producer + "', '" + model + "', '" + description + "', '" + displayInch + "', '" + memory + "', '" + priceBuy + "', '" + priceSell + "', '" + tipoTemp + "');";
+                s.executeUpdate(q);
+            }
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
-        return new Prodotto(producer, model, description, displayInch, memory, priceBuy, priceSell, id, tipoProdotto);
+        prodotto.setId(prodotto.getNewId());
+        return prodotto;
+    }
+
+    public static boolean controllaPresenza(Prodotto prodotto) throws Exception {
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            String q = "SELECT * FROM Prodotto WHERE produttore = '" + prodotto.getProducer() + "' AND modello = '" + prodotto.getModel() + "' AND descrizione = '" + prodotto.getDescription() + "' AND memoria = '" + prodotto.getMemory() + "' AND prezzoAcquisto = '" + prodotto.getPriceBuy() + "' AND prezzoVendita = '" + prodotto.getPriceSell() + "';";
+            ResultSet result = s.executeQuery(q);
+            return result.next();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public int getNewId() throws Exception {
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement s = c.createStatement();
+            String q = "SELECT * FROM Prodotto WHERE produttore = '" + this.getProducer() + "' AND modello = '" + this.getModel() + "' AND descrizione = '" + this.getDescription() + "' AND memoria = '" + this.getMemory() + "' AND prezzoAcquisto = '" + this.getPriceBuy() + "' AND prezzoVendita = '" + this.getPriceSell() + "';";
+            ResultSet result = s.executeQuery(q);
+            if(result.next()) {
+                return result.getInt("id");
+            } else {
+                throw new Exception("Qualcosa è andato storto!");
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }
